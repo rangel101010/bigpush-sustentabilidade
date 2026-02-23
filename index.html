@@ -4,69 +4,102 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Big Push Sustentabilidade</title>
+
 <style>
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #f4efe6;
     color: #2e2e2e;
 }
+
 header {
-    background-color: #2f4f3e;
+    background: linear-gradient(rgba(47,79,62,0.85), rgba(47,79,62,0.85)),
+    url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+    background-size: cover;
+    background-position: center;
     color: white;
-    padding: 60px 20px;
+    padding: 120px 20px;
     text-align: center;
 }
+
 header h1 {
+    font-size: 48px;
     margin: 0;
-    font-size: 40px;
 }
+
+header p {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
 nav {
     background: #1f3a2d;
-    padding: 10px;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
     text-align: center;
 }
+
 nav a {
     color: white;
-    margin: 0 15px;
+    margin: 0 20px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
 }
+
 section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     max-width: 1100px;
     margin: auto;
 }
+
 h2 {
     color: #2f4f3e;
+    margin-bottom: 30px;
 }
+
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
+
 .card {
     background: white;
-    padding: 20px;
-    border-left: 5px solid #2f4f3e;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
-footer {
+
+.highlight {
     background: #2f4f3e;
     color: white;
+    padding: 40px;
     text-align: center;
-    padding: 20px;
+    border-radius: 8px;
 }
+
 .button {
     display: inline-block;
     background: #2f4f3e;
     color: white;
-    padding: 12px 20px;
-    margin-top: 20px;
+    padding: 14px 24px;
+    margin-top: 25px;
     text-decoration: none;
+    border-radius: 4px;
+}
+
+footer {
+    background: #2f4f3e;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -75,73 +108,75 @@ footer {
 </header>
 
 <nav>
-    <a href="#projeto">O Projeto</a>
-    <a href="#modulos">Módulos SIPA</a>
+    <a href="#projeto">Projeto</a>
+    <a href="#modulos">Módulos</a>
     <a href="#resultados">Resultados</a>
+    <a href="#transparencia">Transparência</a>
     <a href="#parcerias">Parcerias</a>
     <a href="#contato">Contato</a>
 </nav>
 
 <section id="projeto">
-    <h2>O Projeto</h2>
-    <p>O Big Push Sustentabilidade estrutura uma unidade experimental dedicada à implantação e monitoramento de Sistemas Integrados de Produção Agropecuária (SIPA), com foco na geração de evidências científicas, formação acadêmica e cooperação com empresas.</p>
-    <div class="cards">
-        <div class="card">
-            <h3>Evidências Científicas</h3>
-            <p>Geração de dados ambientais, produtivos e econômicos para pesquisa aplicada e tomada de decisão.</p>
-        </div>
-        <div class="card">
-            <h3>Formação Acadêmica</h3>
-            <p>Integração de estudantes, bolsistas e pesquisadores em atividades de campo e análise técnica.</p>
-        </div>
-        <div class="card">
-            <h3>Inovação Aberta</h3>
-            <p>Ambiente estruturado para validação de tecnologias e cooperação com o setor produtivo.</p>
-        </div>
-    </div>
+<h2>O Projeto</h2>
+<p>Iniciativa estruturada para implantação e monitoramento de Sistemas Integrados de Produção Agropecuária (SIPA), com foco na geração de evidências científicas, formação de recursos humanos e cooperação tecnológica com empresas.</p>
+
+<div class="cards">
+<div class="card">
+<h3>Evidência Científica</h3>
+<p>Monitoramento de indicadores ambientais, produtivos e econômicos.</p>
+</div>
+
+<div class="card">
+<h3>Formação Acadêmica</h3>
+<p>Integração de estudantes, bolsistas e pesquisadores em atividades práticas.</p>
+</div>
+
+<div class="card">
+<h3>Inovação Aberta</h3>
+<p>Validação de tecnologias e desenvolvimento de soluções sustentáveis.</p>
+</div>
+</div>
 </section>
 
 <section id="modulos">
-    <h2>Módulos SIPA</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>iLP</h3>
-            <p>Integração Lavoura–Pecuária com foco em eficiência produtiva e ciclagem de nutrientes.</p>
-        </div>
-        <div class="card">
-            <h3>iLPF</h3>
-            <p>Integração Lavoura–Pecuária–Floresta visando resiliência, microclima e sustentabilidade.</p>
-        </div>
-        <div class="card">
-            <h3>iPF</h3>
-            <p>Integração Pecuária–Floresta para conforto animal e diversificação produtiva.</p>
-        </div>
-        <div class="card">
-            <h3>iLF</h3>
-            <p>Integração Lavoura–Floresta com foco em estruturação ambiental e diversificação.</p>
-        </div>
-    </div>
+<h2>Módulos SIPA</h2>
+
+<div class="cards">
+<div class="card"><h3>iLP</h3><p>Integração Lavoura–Pecuária</p></div>
+<div class="card"><h3>iLPF</h3><p>Integração Lavoura–Pecuária–Floresta</p></div>
+<div class="card"><h3>iPF</h3><p>Integração Pecuária–Floresta</p></div>
+<div class="card"><h3>iLF</h3><p>Integração Lavoura–Floresta</p></div>
+</div>
 </section>
 
 <section id="resultados">
-    <h2>Resultados</h2>
-    <p>Os resultados são apresentados como linha de base e monitoramentos periódicos. Em SIPA, efeitos consolidados emergem ao longo dos ciclos de manejo, sendo os dados iniciais interpretados como tendência e estruturação sistêmica.</p>
-    <a href="#" class="button">Acessar Relatórios Técnicos</a>
+<h2>Resultados</h2>
+<p>Os dados são organizados por linha de base e monitoramentos periódicos, considerando o caráter cumulativo dos sistemas integrados ao longo do tempo.</p>
+<a href="#" class="button">Acessar Relatórios</a>
+</section>
+
+<section id="transparencia">
+<h2>Transparência</h2>
+<div class="highlight">
+<p>Projeto financiado por órgão público estadual.<br>
+Instrumento: [Inserir Convênio]<br>
+Período de execução: [Inserir período]</p>
+</div>
 </section>
 
 <section id="parcerias">
-    <h2>Parcerias & Inovação</h2>
-    <p>O projeto atua como ambiente de cooperação técnica entre academia e empresas, permitindo validação de tecnologias e desenvolvimento de soluções sustentáveis baseadas em evidências.</p>
+<h2>Parcerias & Inovação</h2>
+<p>Ambiente estruturado para cooperação entre academia e setor produtivo, permitindo validação técnica e desenvolvimento tecnológico.</p>
 </section>
 
 <section id="contato">
-    <h2>Contato</h2>
-    <p>IFFar – Campus [Inserir]</p>
-    <p>Email: [Inserir email institucional]</p>
+<h2>Contato</h2>
+<p>IFFar – Campus [Inserir]<br>
+Email: [Inserir email institucional]</p>
 </section>
 
 <footer>
-    Big Push Sustentabilidade – IFFar
+Big Push Sustentabilidade – Instituto Federal Farroupilha
 </footer>
 
 </body>
