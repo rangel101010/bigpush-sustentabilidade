@@ -12,7 +12,6 @@ body {
     background-color: #f4efe6;
     color: #2e2e2e;
 }
-
 header {
     background: linear-gradient(rgba(47,79,62,0.85), rgba(47,79,62,0.85)),
     url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
@@ -22,29 +21,19 @@ header {
     padding: 120px 20px;
     text-align: center;
 }
-
-header h1 {
-    font-size: 48px;
-    margin: 0;
-}
-
-header p {
-    font-size: 20px;
-    margin-top: 15px;
-}
+header h1 { font-size: 48px; margin: 0; }
+header p { font-size: 20px; margin-top: 15px; }
 
 nav {
     background: #1f3a2d;
     padding: 15px;
     position: sticky;
     top: 0;
-    z-index: 999;
     text-align: center;
 }
-
 nav a {
     color: white;
-    margin: 0 20px;
+    margin: 0 18px;
     text-decoration: none;
     font-weight: 600;
 }
@@ -54,43 +43,27 @@ section {
     max-width: 1100px;
     margin: auto;
 }
-
 h2 {
     color: #2f4f3e;
     margin-bottom: 30px;
 }
-
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
 }
-
 .card {
     background: white;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
-
 .highlight {
     background: #2f4f3e;
     color: white;
     padding: 40px;
-    text-align: center;
     border-radius: 8px;
 }
-
-.button {
-    display: inline-block;
-    background: #2f4f3e;
-    color: white;
-    padding: 14px 24px;
-    margin-top: 25px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
 footer {
     background: #2f4f3e;
     color: white;
@@ -104,13 +77,14 @@ footer {
 
 <header>
     <h1>Big Push Sustentabilidade</h1>
-    <p>Ciência aplicada e inovação em Sistemas Integrados de Produção Agropecuária (SIPA)</p>
+    <p>Plataforma contínua de geração e atualização de evidências em Sistemas Integrados de Produção Agropecuária (SIPA)</p>
 </header>
 
 <nav>
     <a href="#projeto">Projeto</a>
-    <a href="#modulos">Módulos</a>
+    <a href="#indicadores">Indicadores</a>
     <a href="#resultados">Resultados</a>
+    <a href="#equipe">Equipe</a>
     <a href="#transparencia">Transparência</a>
     <a href="#parcerias">Parcerias</a>
     <a href="#contato">Contato</a>
@@ -118,61 +92,69 @@ footer {
 
 <section id="projeto">
 <h2>O Projeto</h2>
-<p>Iniciativa estruturada para implantação e monitoramento de Sistemas Integrados de Produção Agropecuária (SIPA), com foco na geração de evidências científicas, formação de recursos humanos e cooperação tecnológica com empresas.</p>
+<p>O Big Push Sustentabilidade é uma iniciativa estruturada no Instituto Federal Farroupilha – Campus Frederico Westphalen, voltada à implantação e monitoramento de Sistemas Integrados de Produção Agropecuária (SIPA) em área experimental de 18 hectares.</p>
 
-<div class="cards">
-<div class="card">
-<h3>Evidência Científica</h3>
-<p>Monitoramento de indicadores ambientais, produtivos e econômicos.</p>
-</div>
-
-<div class="card">
-<h3>Formação Acadêmica</h3>
-<p>Integração de estudantes, bolsistas e pesquisadores em atividades práticas.</p>
-</div>
-
-<div class="card">
-<h3>Inovação Aberta</h3>
-<p>Validação de tecnologias e desenvolvimento de soluções sustentáveis.</p>
-</div>
-</div>
+<p>O projeto opera como plataforma contínua de geração de evidências científicas, integrando monitoramento ambiental, produtivo e bioeconômico dos sistemas.</p>
 </section>
 
-<section id="modulos">
-<h2>Módulos SIPA</h2>
-
+<section id="indicadores">
+<h2>Indicadores Monitorados</h2>
 <div class="cards">
-<div class="card"><h3>iLP</h3><p>Integração Lavoura–Pecuária</p></div>
-<div class="card"><h3>iLPF</h3><p>Integração Lavoura–Pecuária–Floresta</p></div>
-<div class="card"><h3>iPF</h3><p>Integração Pecuária–Floresta</p></div>
-<div class="card"><h3>iLF</h3><p>Integração Lavoura–Floresta</p></div>
+<div class="card">
+<h3>Características do Solo</h3>
+<p>Atributos químicos, físicos e biológicos monitorados para avaliação de evolução sistêmica.</p>
+</div>
+<div class="card">
+<h3>Bioeconomicidade</h3>
+<p>Análise da eficiência técnica e econômica comparativa entre arranjos produtivos.</p>
+</div>
+<div class="card">
+<h3>Produção por Área</h3>
+<p>Avaliação da produtividade física dos sistemas integrados ao longo dos ciclos.</p>
+</div>
 </div>
 </section>
 
 <section id="resultados">
 <h2>Resultados</h2>
-<p>Os dados são organizados por linha de base e monitoramentos periódicos, considerando o caráter cumulativo dos sistemas integrados ao longo do tempo.</p>
-<a href="#" class="button">Acessar Relatórios</a>
+<p>Os dados são organizados por linha de base e monitoramentos periódicos. Em sistemas integrados, os efeitos estruturais emergem ao longo do tempo, sendo a plataforma atualizada continuamente conforme novos ciclos são concluídos.</p>
+</section>
+
+<section id="equipe">
+<h2>Equipe</h2>
+<div class="card">
+<p><strong>Coordenação:</strong> Rangel Fernandes Pacheco</p>
+<p><strong>Pesquisadores:</strong><br>
+Rangel Fernandes Pacheco<br>
+Joabel Tonellotto dos Santos<br>
+Paulo Roberto Antunes da Rosa<br>
+João Pellegrini<br>
+Alisson Minozzo da Silveira<br>
+Getulio Jorge Stenafello Júnior
+</p>
+</div>
 </section>
 
 <section id="transparencia">
 <h2>Transparência</h2>
 <div class="highlight">
-<p>Projeto financiado por órgão público estadual.<br>
-Instrumento: [Inserir Convênio]<br>
-Período de execução: [Inserir período]</p>
+<p><strong>Processo PROA:</strong> 22/2500-0000241-0<br>
+<strong>Edital:</strong> EDITAL DE CHAMADA PÚBLICA SICT Nº 02/2022 – PROGRAMA INOVA RS<br>
+<strong>Período de execução:</strong> 36 meses + aditivo de 12 meses<br>
+<strong>Área experimental:</strong> 18 hectares</p>
 </div>
 </section>
 
 <section id="parcerias">
-<h2>Parcerias & Inovação</h2>
-<p>Ambiente estruturado para cooperação entre academia e setor produtivo, permitindo validação técnica e desenvolvimento tecnológico.</p>
+<h2>Parcerias Institucionais</h2>
+<p>Cooperativa Tritícola de Frederico Westphalen</p>
+<p>Secretaria de Inovação, Ciência e Tecnologia do RS (SICT)</p>
 </section>
 
 <section id="contato">
 <h2>Contato</h2>
-<p>IFFar – Campus [Inserir]<br>
-Email: [Inserir email institucional]</p>
+<p>Instituto Federal Farroupilha – Campus Frederico Westphalen<br>
+Coordenação: Rangel Fernandes Pacheco</p>
 </section>
 
 <footer>
