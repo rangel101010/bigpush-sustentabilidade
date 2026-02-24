@@ -1,252 +1,452 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Big Push Sustentabilidade</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BIGPUSH Sustentabilidade | Plataforma Científica</title>
+  <meta name="description" content="Plataforma contínua de atualização científica vinculada ao projeto BIGPUSH Sustentabilidade (SIPA) – IFFar Campus Frederico Westphalen, em parceria com SICT/RS e COTRIFRED." />
 
-<style>
-body{
-  margin:0;
-  font-family:"Segoe UI", Arial, sans-serif;
-  background:#f4efe6;
-  color:#2e2e2e;
-  line-height:1.6;
-}
+  <!-- Favicon (opcional) -->
+  <!-- Coloque um arquivo em assets/favicon.ico e descomente abaixo -->
+  <!-- <link rel="icon" href="assets/favicon.ico" /> -->
 
-header{
-  background:#2f4f3e;
-  color:#fff;
-  padding:110px 20px;
-  text-align:center;
-}
-
-header h1{
-  font-size:48px;
-  margin:0;
-}
-
-header p{
-  font-size:20px;
-  margin-top:15px;
-  max-width:900px;
-  margin:auto;
-}
-
-nav{
-  background:#1f3a2d;
-  padding:14px 10px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:999;
-}
-
-nav a{
-  color:#fff;
-  margin:0 14px;
-  text-decoration:none;
-  font-weight:600;
-  font-size:15px;
-}
-
-nav a:hover{
-  text-decoration:underline;
-}
-
-section{
-  padding:70px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-h2{
-  color:#2f4f3e;
-  margin-bottom:20px;
-}
-
-h3{
-  color:#2f4f3e;
-  margin-top:30px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-  gap:20px;
-  margin-top:20px;
-}
-
-.card{
-  background:#fff;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.08);
-  border-left:5px solid #2f4f3e;
-}
-
-.highlight{
-  background:#2f4f3e;
-  color:#fff;
-  padding:30px;
-  border-radius:10px;
-}
-
-.btn{
-  display:inline-block;
-  background:#2f4f3e;
-  color:#fff;
-  padding:14px 22px;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:600;
-  margin-top:20px;
-  transition:all 0.3s ease;
-}
-
-.btn:hover{
-  background:#1f3a2d;
-}
-
-.sep{
-  height:1px;
-  background:rgba(47,79,62,0.15);
-  border:0;
-}
-
-footer{
-  background:#2f4f3e;
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-  margin-top:30px;
-}
-
-.small{
-  font-size:14px;
-  opacity:0.9;
-}
-</style>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1730;
+      --text:#e8eefc;
+      --muted:#b8c3e6;
+      --line:rgba(232,238,252,.14);
+      --accent:#7aa2ff;
+      --accent2:#68e6c7;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(122,162,255,.16), transparent 55%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(104,230,199,.14), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.75);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0;
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .brand strong{letter-spacing:.6px}
+    .brand small{color:var(--muted)}
+    .menu{
+      display:flex; gap:10px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .chip{
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-size:.92rem;
+      transition:transform .08s ease, background .2s ease;
+    }
+    .chip:hover{background: rgba(255,255,255,.07); transform: translateY(-1px); text-decoration:none}
+    header.hero{
+      padding:44px 0 18px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns:1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .heroTitle{
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin:0 0 10px;
+      letter-spacing:.4px;
+    }
+    .lead{color:var(--muted); margin:0}
+    .kv{
+      display:grid; gap:10px;
+    }
+    .kvItem{
+      border:1px dashed rgba(232,238,252,.18);
+      border-radius:14px;
+      padding:12px 12px;
+      background: rgba(0,0,0,.18);
+    }
+    .kvItem b{display:block; font-size:.92rem; letter-spacing:.3px}
+    .kvItem span{color:var(--muted); font-size:.95rem}
+    section{padding:18px 0}
+    .sectionTitle{
+      margin:0 0 10px;
+      font-size:1.25rem;
+      letter-spacing:.3px;
+    }
+    .sectionSub{margin:0 0 14px; color:var(--muted)}
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+    @media (max-width: 900px){.grid2{grid-template-columns:1fr}}
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+    .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .tag{
+      font-size:.88rem;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(122,162,255,.14);
+      color: var(--text);
+      font-weight:600;
+    }
+    .btn:hover{background: rgba(122,162,255,.20); text-decoration:none}
+    .btn.secondary{background: rgba(104,230,199,.12)}
+    .btn.secondary:hover{background: rgba(104,230,199,.18)}
+    .fineprint{font-size:.92rem; color:var(--muted)}
+    .logos{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      align-items:stretch;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){.logos{grid-template-columns:1fr}}
+    .logoCard{
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .logoBox{
+      background: rgba(255,255,255,.92);
+      border-radius: 14px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:110px;
+      overflow:hidden;
+    }
+    .logoBox img{
+      max-width:100%;
+      height:auto;
+      display:block;
+    }
+    .logoCard b{color:var(--text)}
+    .logoCard span{color:var(--muted); font-size:.95rem}
+    footer{
+      border-top:1px solid var(--line);
+      padding:18px 0 34px;
+      color:var(--muted);
+      margin-top:18px;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .hr{
+      height:1px; background: var(--line); margin:14px 0;
+    }
+  </style>
 </head>
 
 <body>
-
-<header>
-  <h1>Big Push Sustentabilidade</h1>
-  <p>Plataforma contínua de geração e atualização de evidências em Sistemas Integrados de Produção Agropecuária (SIPA)</p>
-  <p class="small">Instituto Federal Farroupilha – Campus Frederico Westphalen</p>
-</header>
-
-<nav>
-  <a href="#projeto">Projeto</a>
-  <a href="#indicadores">Indicadores</a>
-  <a href="#galeria">Galeria</a>
-  <a href="#resultados">Resultados</a>
-  <a href="#equipe">Equipe</a>
-  <a href="#transparencia">Transparência</a>
-  <a href="#contato">Contato</a>
-</nav>
-
-<section id="projeto">
-<h2>O Projeto</h2>
-<p>O Big Push Sustentabilidade constitui uma plataforma científica permanente voltada à implantação e monitoramento de Sistemas Integrados de Produção Agropecuária (SIPA) em área experimental de 18 hectares.</p>
-</section>
-
-<hr class="sep"/>
-
-<section id="indicadores">
-<h2>Indicadores Monitorados</h2>
-<div class="cards">
-  <div class="card">
-    <h3>Características do Solo</h3>
-    <p>Atributos químicos, físicos e biológicos monitorados para avaliação longitudinal.</p>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <strong>BIGPUSH Sustentabilidade</strong>
+          <small>Plataforma contínua de atualização científica (SIPA)</small>
+        </div>
+        <nav class="menu" aria-label="Navegação">
+          <a class="chip" href="#indicadores">Indicadores</a>
+          <a class="chip" href="#solos">Análise de Solos</a>
+          <a class="chip" href="#galeria">Galeria</a>
+          <a class="chip" href="#parceiros">Parceiros</a>
+          <a class="chip" href="#contato">Contato</a>
+        </nav>
+      </div>
+    </div>
   </div>
-  <div class="card">
-    <h3>Bioeconomicidade</h3>
-    <p>Análise comparativa de eficiência técnica e econômica entre sistemas produtivos.</p>
-  </div>
-  <div class="card">
-    <h3>Produção por Área</h3>
-    <p>Desempenho produtivo físico por unidade de área.</p>
-  </div>
-</div>
-</section>
 
-<hr class="sep"/>
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="card">
+          <h1 class="heroTitle">Unidade de Referência Científica e Tecnológica em SIPA</h1>
+          <p class="lead">
+            Esta plataforma integra a estratégia de comunicação técnico-científica e de transparência pública do projeto,
+            operando como repositório e canal de atualização contínua de indicadores, registros e resultados.
+          </p>
 
-<section id="galeria">
-<h2>Galeria Técnica – Atualização Contínua</h2>
-<div class="highlight">
-<p>O registro fotográfico oficial da Unidade Experimental SIPA é mantido em repositório digital externo, permitindo atualização contínua ao longo da execução do projeto.</p>
-<a class="btn" href="https://drive.google.com/drive/folders/1M9_YQPx0axQoyQnQOXGAJeceuaHtwaa1?usp=drive_link" target="_blank">
-Acessar Galeria Oficial no Google Drive
-</a>
-</div>
-</section>
+          <div class="tagRow" aria-label="Metadados">
+            <span class="tag">Processo PROA: 22/2500-0000241-0</span>
+            <span class="tag">Edital SICT Nº 02/2022 — Programa Inova RS</span>
+            <span class="tag">Execução: 36 meses + aditivo de 12 meses</span>
+            <span class="tag">Área experimental: 18 ha</span>
+            <span class="tag">Campus: Frederico Westphalen</span>
+          </div>
 
-<hr class="sep"/>
+          <div class="btnRow">
+            <a class="btn" href="#solos">Ver análise de solos</a>
+            <a class="btn secondary" href="#parceiros">Ver parceiros</a>
+          </div>
 
-<section id="resultados">
-<h2>Resultados – Análise de Solos (2024) – Linha de Base</h2>
+          <p class="fineprint" style="margin-top:12px">
+            <span class="mono">Status:</span> fase inicial de implantação e consolidação, com plataforma já operacional e em contínuo aprimoramento.
+          </p>
+        </div>
 
-<p>No exercício de 2024 foi realizada a primeira campanha oficial de amostragem e análise química de solos dos piquetes experimentais vinculados à Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA). Esta análise constitui o marco zero do monitoramento edáfico do projeto, estabelecendo a linha de base necessária para avaliação longitudinal dos efeitos dos diferentes sistemas produtivos implantados. Ressalta-se que os sistemas encontram-se em fase inicial de consolidação, razão pela qual os resultados apresentados refletem predominantemente as condições históricas prévias das áreas, e não ainda os efeitos estruturais decorrentes dos tratamentos.</p>
+        <div class="card">
+          <h2 class="sectionTitle" style="margin-top:0">Coordenação e equipe</h2>
 
-<h3>Caracterização Edáfica Geral da Unidade Experimental</h3>
-<p>Os solos avaliados apresentam teor de argila médio a elevado, característica que confere:</p>
-<ul>
-<li>Boa capacidade de retenção de nutrientes;</li>
-<li>Potencial expressivo de resposta à elevação da matéria orgânica;</li>
-<li>Aptidão química para sistemas integrados de médio e longo prazo.</li>
-</ul>
+          <div class="kv">
+            <div class="kvItem">
+              <b>Coordenação</b>
+              <span>Rangel Fernandes Pacheco</span>
+            </div>
+            <div class="kvItem">
+              <b>Pesquisadores principais</b>
+              <span>Rangel Fernandes Pacheco; Joabel Tonellotto dos Santos; Paulo Roberto Antunes da Rosa; João Pellegrini; Alisson Minozzo da Silveira; Getulio Jorge Stenafello Júnior.</span>
+            </div>
+            <div class="kvItem">
+              <b>Instituições envolvidas</b>
+              <span>Instituto Federal Farroupilha (IFFar) — Campus Frederico Westphalen; Secretaria de Inovação, Ciência e Tecnologia do RS (SICT); Cooperativa Tritícola de Frederico Westphalen (COTRIFRED).</span>
+            </div>
+          </div>
+        </div>
 
-<p>A capacidade de troca catiônica observada indica que os solos possuem estrutura química compatível com intensificação sustentável, desde que submetidos a manejo adequado.</p>
+      </div>
+    </div>
+  </header>
 
-<h3>Situação Atual da Fertilidade – Interpretação Técnica</h3>
-<p>A análise inicial demonstra a presença de acidez em parte dos piquetes, condição típica de solos da região sob uso agrícola contínuo. Em determinadas áreas observa-se ocorrência de alumínio trocável.</p>
+  <main>
+    <section id="indicadores">
+      <div class="wrap">
+        <div class="grid2">
+          <div class="card">
+            <h2 class="sectionTitle">Indicadores monitorados</h2>
+            <p class="sectionSub">
+              A plataforma consolida o acompanhamento técnico-científico do projeto, com atualização sistemática de evidências e registros de execução.
+            </p>
+            <ul class="list">
+              <li>Características do solo (monitoramento edáfico e fertilidade).</li>
+              <li>Bioeconomicidade dos sistemas (indicadores técnico-econômicos).</li>
+              <li>Produção por área (indicadores zootécnicos e agronômicos, conforme desenho experimental).</li>
+            </ul>
+          </div>
 
-<p>A baixa disponibilidade inicial de fósforo constitui a principal limitação química observada entre os sistemas.</p>
+          <div class="card">
+            <h2 class="sectionTitle">Finalidade da plataforma</h2>
+            <p class="sectionSub">
+              <b>B) Plataforma contínua de atualização científica</b>
+            </p>
+            <p class="fineprint" style="margin:0">
+              Estrutura destinada à organização, publicação e rastreabilidade de informações técnicas do projeto, ampliando transparência,
+              governança de dados e capacidade de prestação de contas mediante evidências verificáveis, com evolução incremental conforme o
+              avanço dos ciclos de monitoramento.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h3>Considerações Técnicas Finais</h3>
-<p>A análise de solos realizada em 2024 estabelece a condição inicial das unidades demonstrativas e consolida a base técnica para monitoramento contínuo da qualidade química do solo e futura demonstração dos efeitos dos SIPA.</p>
-</section>
+    <section id="solos">
+      <div class="wrap">
+        <div class="card">
+          <h2 class="sectionTitle">Resultados e interpretação técnica — Análise de solos (linha de base)</h2>
+          <p class="sectionSub">
+            Texto técnico consolidado (marco zero do monitoramento edáfico).
+          </p>
 
-<hr class="sep"/>
+          <div class="hr"></div>
 
-<section id="equipe">
-<h2>Equipe</h2>
-<p><strong>Coordenação:</strong> Rangel Fernandes Pacheco</p>
-<p><strong>Pesquisadores:</strong> Rangel Fernandes Pacheco; Joabel Tonellotto dos Santos; Paulo Roberto Antunes da Rosa; João Pellegrini; Alisson Minozzo da Silveira; Getulio Jorge Stenafello Júnior.</p>
-</section>
+          <p>
+            No exercício de 2024 foi realizada a primeira campanha oficial de amostragem e análise química de solos dos piquetes experimentais vinculados à Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA). Esta análise constitui o marco zero do monitoramento edáfico do projeto, estabelecendo a linha de base necessária para avaliação longitudinal dos efeitos dos diferentes sistemas produtivos implantados. Ressalta-se que os sistemas encontram-se em fase inicial de consolidação, razão pela qual os resultados apresentados refletem predominantemente as condições históricas prévias das áreas, e não ainda os efeitos estruturais decorrentes dos tratamentos.
+          </p>
 
-<hr class="sep"/>
+          <p><b>Caracterização Edáfica Geral da Unidade Experimental.</b><br/>
+            Os solos avaliados apresentam teor de argila médio a elevado, característica que confere:
+          </p>
+          <ul class="list">
+            <li>Boa capacidade de retenção de nutrientes;</li>
+            <li>Potencial expressivo de resposta à elevação da matéria orgânica;</li>
+            <li>Aptidão química para sistemas integrados de médio e longo prazo.</li>
+          </ul>
+          <p>
+            A capacidade de troca catiônica observada indica que os solos possuem estrutura química compatível com intensificação sustentável, desde que submetidos a manejo adequado. Essa condição estrutural reforça a viabilidade técnica da implantação dos sistemas SIPA na área experimental.
+          </p>
 
-<section id="transparencia">
-<h2>Transparência</h2>
-<div class="highlight">
-<p><strong>Processo PROA:</strong> 22/2500-0000241-0</p>
-<p><strong>Edital:</strong> SICT Nº 02/2022 – PROGRAMA INOVA RS</p>
-<p><strong>Período:</strong> 36 meses + aditivo de 12 meses</p>
-<p><strong>Área experimental:</strong> 18 hectares</p>
-</div>
-</section>
+          <p><b>Situação Atual da Fertilidade – Interpretação Técnica</b><br/>
+            A análise inicial demonstra a presença de acidez em parte dos piquetes, condição típica de solos da região sob uso agrícola contínuo. Em determinadas áreas observa-se ocorrência de alumínio trocável, indicando necessidade de acompanhamento da saturação por bases ao longo do tempo. Do ponto de vista técnico, trata-se de condição agronomicamente esperada, compatível com o histórico das áreas e plenamente manejável dentro do escopo do projeto.
+          </p>
 
-<hr class="sep"/>
+          <p>
+            A adoção de sistemas integrados tende a favorecer: incremento gradual da matéria orgânica; a maior ciclagem biológica de bases; estabilização progressiva do pH e redução indireta da atividade do alumínio trocável. Contudo, tais efeitos dependem de acúmulo temporal de biomassa e ciclagem radicular.
+          </p>
 
-<section id="contato">
-<h2>Contato</h2>
-<p><strong>Coordenação:</strong> Rangel Fernandes Pacheco</p>
-<p><strong>E-mail:</strong> <a href="mailto:rangel.pacheco@iffar.edu.br">rangel.pacheco@iffar.edu.br</a></p>
-<p><strong>Endereço da Unidade Experimental:</strong><br>
-BR 368, km 40, Linha 7 de Setembro,<br>
-Frederico Westphalen/RS, Brasil<br>
-CEP: 98400-000
-</p>
-</section>
+          <p>
+            A baixa disponibilidade inicial de fósforo constitui a principal limitação química observada entre os sistemas. Essa característica é comum em solos argilosos intemperizados, nos quais ocorre forte adsorção do nutriente às frações minerais. Sob a perspectiva dos sistemas SIPA, espera-se que: a atividade biológica aumente a eficiência de uso do fósforo; a ciclagem via componente pecuário contribua para redistribuição superficial; a maior diversidade radicular amplie o volume explorado; o incremento da matéria orgânica reduza parcialmente a fixação do nutriente. Entretanto, o fósforo é elemento de resposta lenta, sendo tecnicamente esperado que sua evolução seja observável apenas após sucessivos ciclos produtivos.
+          </p>
 
-<footer>
-<p><strong>Big Push Sustentabilidade</strong></p>
-<p class="small">Instituto Federal Farroupilha – Campus Frederico Westphalen</p>
-</footer>
+          <p>
+            Os teores de potássio, cálcio e magnésio apresentam, de modo geral, condição satisfatória ou intermediária. Isso indica que os solos possuem base nutricional adequada para sustentação dos sistemas produtivos implantados. Nos sistemas com componente pecuário, especialmente sob pastejo rotacionado, a tendência é de maior reciclagem de potássio e redistribuição superficial de nutrientes, contribuindo para maior equilíbrio das relações entre bases ao longo do tempo.
+          </p>
 
+          <p><b>Comparação Sistêmica e Potencial de Evolução</b><br/>
+            A comparação entre os sistemas demonstra que as áreas sob lavoura permanente apresentam maior homogeneidade química inicial, refletindo histórico de manejo convencional, fazendo com que os sistemas integrados (iLF, iLP e iLPF) apresentam maior variabilidade inicial, característica esperada em áreas recém-estruturadas. Já as áreas de pecuária permanente demonstram heterogeneidade espacial compatível com manejo prévio sob pastejo.
+          </p>
+
+          <p>
+            Importante registrar que a ausência de diferenças estruturais consolidadas entre sistemas é metodologicamente coerente, considerando que os tratamentos encontram-se em fase inicial; ainda não houve número suficiente de ciclos agrícolas e pecuários e o componente arbóreo, nos sistemas que o integram, ainda está em fase de estabelecimento. Sob a ótica científica, efeitos estruturais dos SIPA tendem a tornar-se mensuráveis após três a cinco anos de manejo contínuo, especialmente em indicadores como matéria orgânica; saturação por bases; capacidade de troca catiônica efetiva; estabilidade do pH; eficiência no uso do fósforo.
+          </p>
+
+          <p><b>Considerações Técnicas Finais</b><br/>
+            A análise de solos realizada em 2024 cumpre integralmente o objetivo de estabelecer a condição inicial das unidades demonstrativas. Os resultados indicam que os solos apresentam aptidão estrutural compatível com intensificação sustentável e a a principal limitação química é a disponibilidade de fósforo. A acidez observada é compatível com o histórico regional e existe elevado potencial de evolução sob manejo integrado.
+            Este diagnóstico inicial permitirá, nos próximos anos, avaliar de forma comparativa e cientificamente fundamentada os impactos dos diferentes sistemas produtivos implantados no âmbito do projeto. Assim, consolida-se a base técnica necessária para o monitoramento contínuo da qualidade química do solo e para a demonstração futura dos efeitos dos Sistemas Integrados de Produção Agropecuária na região.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="wrap">
+        <div class="card">
+          <h2 class="sectionTitle">Galeria de fotos (Drive)</h2>
+          <p class="sectionSub">
+            As imagens oficiais da Unidade Experimental e registros de campo são mantidos em pasta institucional, com atualização contínua.
+          </p>
+
+          <div class="btnRow">
+            <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1M9_YQPx0axQoyQnQOXGAJeceuaHtwaa1?usp=drive_link">
+              Acessar galeria no Google Drive
+            </a>
+          </div>
+
+          <p class="fineprint" style="margin-top:12px">
+            Observação: novas fotos serão adicionadas progressivamente ao repositório acima, garantindo centralização, versionamento e rastreabilidade dos registros.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="parceiros">
+      <div class="wrap">
+        <div class="card">
+          <h2 class="sectionTitle">Instituições parceiras e natureza da cooperação</h2>
+          <p class="sectionSub">
+            Este projeto é fruto de articulação interinstitucional, envolvendo o Instituto Federal Farroupilha (IFFar) — Campus Frederico Westphalen,
+            a Secretaria de Inovação, Ciência e Tecnologia do Estado do Rio Grande do Sul (SICT/RS) e a Cooperativa Tritícola de Frederico Westphalen (COTRIFRED),
+            com convergência de esforços técnicos e institucionais voltados à implantação, monitoramento e demonstração de Sistemas Integrados de Produção Agropecuária (SIPA)
+            como estratégia de intensificação sustentável e geração de evidências científicas aplicadas.
+          </p>
+
+          <div class="logos" aria-label="Logos institucionais">
+            <div class="logoCard">
+              <div class="logoBox">
+                <img src="assets/iffar.png" alt="Logo do Instituto Federal Farroupilha (IFFar) - Campus Frederico Westphalen" />
+              </div>
+              <b>Instituto Federal Farroupilha (IFFar)</b>
+              <span>Instituição executora — Campus Frederico Westphalen.</span>
+            </div>
+
+            <div class="logoCard">
+              <div class="logoBox">
+                <img src="assets/sict.png" alt="Logo da Secretaria de Inovação, Ciência e Tecnologia do RS (SICT/RS)" />
+              </div>
+              <b>SICT/RS</b>
+              <span>Instituição parceira — Programa Inova RS (Edital SICT Nº 02/2022).</span>
+            </div>
+
+            <div class="logoCard">
+              <div class="logoBox">
+                <img src="assets/cotrifred.png" alt="Logo da Cooperativa Tritícola de Frederico Westphalen (COTRIFRED)" />
+              </div>
+              <b>COTRIFRED</b>
+              <span>Instituição parceira — apoio e integração territorial ao arranjo de inovação.</span>
+            </div>
+          </div>
+
+          <p class="fineprint" style="margin-top:14px">
+            <b>Instrumento:</b> Processo PROA: 22/2500-0000241-0 — EDITAL DE CHAMADA PÚBLICA SICT Nº 02/2022 – PROGRAMA INOVA RS.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="wrap">
+        <div class="grid2">
+          <div class="card">
+            <h2 class="sectionTitle">Contato</h2>
+            <p class="sectionSub">Canal institucional para comunicação técnica e solicitações formais.</p>
+            <p style="margin:0">
+              <b>E-mail:</b>
+              <a href="mailto:rangel.pacheco@iffar.edu.br">rangel.pacheco@iffar.edu.br</a>
+            </p>
+          </div>
+
+          <div class="card">
+            <h2 class="sectionTitle">Unidade experimental</h2>
+            <p class="sectionSub">Localização para referência administrativa e logística.</p>
+            <p style="margin:0">
+              BR 368, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="fineprint">
+        © <span id="year"></span> BIGPUSH Sustentabilidade — Plataforma científica (SIPA).<br/>
+        Atualizações e registros são incorporados progressivamente conforme o avanço dos ciclos de monitoramento.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
