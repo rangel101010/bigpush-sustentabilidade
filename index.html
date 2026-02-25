@@ -1,220 +1,1009 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BigPush Sustentabilidade</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="description" content="Plataforma BigPush Sustentabilidade – evidências, governança técnica e monitoramento de módulos SIPA." />
-<meta name="theme-color" content="#2f4f3a" />
+  <title>BigPush Sustentabilidade</title>
+  <meta name="description" content="Plataforma BigPush Sustentabilidade – evidências, governança técnica e monitoramento de módulos SIPA." />
+  <meta name="theme-color" content="#2f4f3a" />
 
-<style>
-:root{
-  --bg:#f6f8f6;
-  --surface:#ffffff;
-  --text:#142018;
-  --muted:#4c5d52;
-  --moss:#2f4f3a;
-  --moss-2:#3f6b4e;
-  --border:rgba(31,58,42,.14);
-  --shadow:0 10px 20px rgba(0,0,0,.06);
-  --radius:16px;
-  --max:1100px;
-  --font:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-}
+  <!-- Open Graph -->
+  <meta property="og:title" content="BigPush Sustentabilidade" />
+  <meta property="og:description" content="Evidências e governança técnica em módulos SIPA (iLP • iLF • iLPF • iPF) — implantação, consolidação e avaliação por ciclos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.bigpushsustentabilidade.com.br/" />
+  <!-- Se ainda não criou a OG cover, pode comentar por enquanto -->
+  <meta property="og:image" content="https://www.bigpushsustentabilidade.com.br/assets/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  font-family:var(--font);
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-}
-.wrap{max-width:var(--max);margin:auto;padding:0 20px;}
-.muted{color:var(--muted);}
+  <style>
+    :root{
+      --bg: #f6f8f6;
+      --surface: #ffffff;
+      --text: #142018;
+      --muted: #4c5d52;
 
-/* HEADER */
-header{
-  background:linear-gradient(90deg,var(--moss),var(--moss-2));
-  color:#fff;
-  padding:10px 0;
-}
-.header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.brand img{
-  height:60px;
-  background:#fff;
-  padding:6px;
-  border-radius:10px;
-}
-.brand-text strong{
-  display:block;
-  font-size:18px;
-}
-.brand-text span{
-  font-size:13px;
-  opacity:.9;
-}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  margin-left:18px;
-  font-size:14px;
-}
-nav a:hover{opacity:.8;}
+      --moss: #2f4f3a;
+      --moss-2: #3f6b4e;
+      --moss-3: #1f3a2a;
 
-/* SECTIONS */
-section{
-  background:#fff;
-  margin:20px 0;
-  padding:22px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-h2{
-  margin-top:0;
-  color:var(--moss);
-  font-size:20px;
-}
+      --border: rgba(31,58,42,.14);
+      --shadow: 0 12px 28px rgba(0,0,0,.08);
+      --shadow-soft: 0 10px 18px rgba(0,0,0,.06);
 
-/* CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
-}
-.card{
-  border:1px solid var(--border);
-  padding:16px;
-  border-radius:12px;
-  background:#fafafa;
-}
-.card h3{
-  margin:0 0 8px;
-  font-size:15px;
-  color:var(--moss);
-}
-.card a{
-  display:inline-block;
-  margin-top:8px;
-  font-weight:600;
-  color:var(--moss);
-  text-decoration:none;
-}
-.card a:hover{text-decoration:underline;}
+      --radius: 16px;
+      --radius-2: 20px;
+      --max: 1120px;
 
-footer{
-  text-align:center;
-  font-size:13px;
-  padding:20px 0;
-  color:var(--muted);
-}
-</style>
+      --ring: rgba(47,79,58,.25);
+      --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      background: radial-gradient(1100px 500px at 20% -10%, rgba(63,107,78,.14), transparent 60%),
+                  radial-gradient(900px 500px at 85% 0%, rgba(47,79,58,.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a{ color: inherit; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
+    .muted{ color: var(--muted); }
+
+    /* Acessibilidade */
+    .skip-link{
+      position:absolute; left:-999px; top: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      z-index: 9999;
+    }
+    .skip-link:focus{ left: 18px; outline: none; box-shadow: 0 0 0 4px var(--ring), var(--shadow-soft); }
+    :focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--ring);
+      border-radius: 10px;
+    }
+
+    /* Header */
+    header.topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(47,79,58,.92), rgba(63,107,78,.92));
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .topbar .inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 10px 0;
+    }
+
+    /* Logo + brand */
+    .brandbar{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 300px;
+      color:#fff;
+    }
+    .brandbar img{
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: rgba(255,255,255,.92);
+      padding: 6px;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      line-height: 1.15;
+    }
+    .brand strong{ font-size: 17px; letter-spacing: .2px; }
+    .brand span{ font-size: 12.6px; opacity:.92; }
+
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      font-weight: 750;
+      font-size: 13px;
+      padding: 9px 11px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.10);
+      transition: transform .12s ease, background .12s ease;
+      white-space: nowrap;
+    }
+    nav a:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    nav a.active{ background: rgba(255,255,255,.22); }
+
+    /* Hero */
+    .hero{ padding: 22px 0 18px; }
+    .hero .panel{
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2);
+      background:
+        radial-gradient(850px 340px at 10% 0%, rgba(63,107,78,.18), transparent 60%),
+        radial-gradient(700px 340px at 95% 5%, rgba(47,79,58,.16), transparent 55%),
+        linear-gradient(180deg, #ffffff, #fbfcfb);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero .inner{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:center;
+      padding: 22px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(47,79,58,.08);
+      border: 1px solid rgba(47,79,58,.14);
+      color: var(--moss);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .2px;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius: 50%;
+      background: var(--moss);
+      box-shadow: 0 0 0 4px rgba(47,79,58,.14);
+    }
+    .hero h1{
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.15;
+      color: var(--moss-3);
+      letter-spacing: -0.3px;
+    }
+    .hero p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 15.2px;
+      max-width: 82ch;
+    }
+    .hero p:last-child{ margin-bottom: 0; }
+
+    .cta{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items: stretch;
+      justify-content:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      text-decoration:none;
+      font-weight: 850;
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background:#fff;
+      color: var(--moss);
+      box-shadow: var(--shadow-soft);
+      transition: transform .12s ease, filter .12s ease;
+      text-align:center;
+      user-select:none;
+    }
+    .btn.primary{
+      background: linear-gradient(90deg, var(--moss), var(--moss-2));
+      color:#fff;
+      border-color: transparent;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+
+    .status{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 22px 20px;
+    }
+    .pill{
+      background: rgba(255,255,255,.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow-soft);
+      min-height: 70px;
+    }
+    .pill strong{
+      display:block;
+      font-size: 12px;
+      color: var(--moss);
+      letter-spacing: .2px;
+    }
+    .pill span{
+      display:block;
+      margin-top: 4px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    /* Sections */
+    main{ padding: 10px 0 30px; }
+    section{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2);
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      margin: 14px 0;
+    }
+    section .head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    section h2{
+      margin: 0;
+      font-size: 18.5px;
+      color: var(--moss-3);
+      letter-spacing: -0.1px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--moss);
+      background: rgba(47,79,58,.08);
+      border: 1px solid rgba(47,79,58,.14);
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    /* Grids / Cards */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .card{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #fff, #fbfcfb);
+      padding: 14px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
+    }
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 14px;
+      color: var(--moss);
+      letter-spacing: .1px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .card a{
+      display:inline-flex;
+      margin-top: 10px;
+      text-decoration:none;
+      font-weight: 900;
+      color: var(--moss);
+    }
+    .card a:hover{ text-decoration: underline; }
+
+    /* Badges */
+    .row{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--moss-3);
+    }
+    .badge.ok{
+      background: rgba(63,107,78,.10);
+      border-color: rgba(63,107,78,.22);
+      color: var(--moss);
+    }
+    .badge.warn{
+      background: rgba(255, 185, 0, .12);
+      border-color: rgba(255, 185, 0, .25);
+      color: #6b4f00;
+    }
+    .badge.info{
+      background: rgba(47,79,58,.08);
+      border-color: rgba(47,79,58,.18);
+      color: var(--moss-3);
+    }
+
+    /* TOC (sumário com âncoras) */
+    .toc{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #fff, #fbfcfb);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.04);
+      margin-top: 12px;
+    }
+    .toc strong{
+      display:block;
+      color: var(--moss-3);
+      margin-bottom: 6px;
+      font-size: 13px;
+      letter-spacing: .1px;
+    }
+    .toc .links{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+    }
+    .toc a{
+      text-decoration:none;
+      font-weight: 900;
+      font-size: 12.5px;
+      color: var(--moss);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(47,79,58,.18);
+      background: rgba(47,79,58,.06);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .toc a:hover{ transform: translateY(-1px); background: rgba(47,79,58,.10); }
+    .toc a.active{
+      background: rgba(47,79,58,.14);
+      border-color: rgba(47,79,58,.28);
+      color: var(--moss-3);
+    }
+    .subsec{
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(31,58,42,.18);
+    }
+    .subsec h3{
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--moss);
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .bullets li{ margin: 7px 0; }
+
+    /* Partners */
+    .partners{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+      align-items: stretch;
+    }
+    .partner{
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fbfcfb);
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items:center;
+      justify-content:center;
+      min-height: 160px;
+      text-align:center;
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
+      transition: transform .12s ease;
+    }
+    .partner:hover{ transform: translateY(-2px); }
+    .partner img{
+      width: 100%;
+      max-width: 190px;
+      height: 78px;
+      object-fit: contain;
+      background:#fff;
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(0,0,0,.05);
+      filter: grayscale(10%);
+    }
+    .partner .name{
+      font-weight: 900;
+      color: var(--moss-3);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+    .partner .desc{
+      color: var(--muted);
+      font-size: 12.8px;
+      line-height: 1.35;
+      margin-top: -4px;
+      max-width: 40ch;
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--muted);
+      padding: 18px 0 26px;
+      font-size: 13px;
+    }
+    footer a{ color: var(--moss); text-decoration:none; font-weight:900; }
+    footer a:hover{ text-decoration: underline; }
+
+    /* Back to top */
+    .to-top{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--moss);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      text-decoration:none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+    .to-top.show{
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px){
+      .hero .inner{ grid-template-columns: 1fr; }
+      .cta{ flex-direction: row; flex-wrap: wrap; }
+      .btn{ flex: 1 1 180px; }
+      nav{ justify-content:flex-start; }
+      .status{ grid-template-columns: 1fr; }
+      .brandbar{ min-width: auto; }
+    }
+  </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-<header>
-  <div class="wrap header-inner">
-    <div class="brand">
-      <img src="assets/logo-bigpush.png" alt="Logo BigPush">
-      <div class="brand-text">
-        <strong>BigPush Sustentabilidade</strong>
-        <span>Evidências e governança técnica em módulos SIPA</span>
+  <header class="topbar" aria-label="Cabeçalho">
+    <div class="wrap inner">
+
+      <div class="brandbar">
+        <img src="assets/logo-bigpush.png" alt="Símbolo BigPush" />
+        <div class="brand">
+          <strong>BigPush Sustentabilidade</strong>
+          <span>Evidências e governança técnica em módulos SIPA</span>
+        </div>
+      </div>
+
+      <nav aria-label="Navegação principal">
+        <a href="#apresentacao">Apresentação</a>
+        <a href="#modulos">Módulos SIPA</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#participacao">Participação</a>
+        <a href="#publicacoes">Publicações</a>
+        <a href="#divulgacao">Divulgação</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero" id="apresentacao">
+    <div class="wrap">
+      <div class="panel">
+        <div class="inner">
+          <div>
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Unidade de Referência Científica e Tecnológica em SIPA</div>
+            <h1>Big Push para Sustentabilidade</h1>
+
+            <p class="muted">
+              O projeto Big Push para Sustentabilidade consiste na implantação de uma Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA)
+              na região Produção e Norte do Rio Grande do Sul, no Instituto Federal Farroupilha – Campus Frederico Westphalen.
+            </p>
+            <p class="muted">
+              Fomentado pelo Edital SICT nº 02/2022 – Programa INOVA RS, o projeto resulta da articulação entre instituições de ensino e pesquisa, setor produtivo, poder público e sociedade civil,
+              consolidando uma parceria estratégica para o desenvolvimento regional.
+            </p>
+            <p class="muted">
+              A iniciativa estrutura módulos experimentais de integração lavoura, pecuária e floresta, com foco na geração de pesquisa, inovação e difusão de tecnologias voltadas à intensificação sustentável,
+              aumento da produtividade e mitigação de impactos ambientais.
+            </p>
+            <p class="muted">
+              A unidade posiciona-se como ambiente permanente de experimentação, validação tecnológica e formação qualificada, fortalecendo o ecossistema de inovação e contribuindo para o desenvolvimento sustentável
+              das pequenas propriedades rurais da região.
+            </p>
+          </div>
+
+          <div class="cta" aria-label="Ações principais">
+            <a class="btn primary" href="#modulos">Ver Módulos SIPA</a>
+            <a class="btn" href="#participacao">Como Participar</a>
+          </div>
+        </div>
+
+        <div class="status" aria-label="Status do projeto">
+          <div class="pill">
+            <strong>Fase</strong>
+            <span>Implantação e consolidação inicial (plataforma e unidade experimental)</span>
+          </div>
+          <div class="pill">
+            <strong>Arquitetura</strong>
+            <span>Módulos SIPA: iLP • iLF • iLPF • iPF (avaliação por ciclos)</span>
+          </div>
+          <div class="pill">
+            <strong>Evidência atual</strong>
+            <span>Linha de base (solo) + registros de implantação e governança</span>
+          </div>
+          <div class="pill">
+            <strong>Finalidade</strong>
+            <span>Pesquisa aplicada, validação tecnológica e difusão para a região</span>
+          </div>
+        </div>
       </div>
     </div>
-
-    <nav>
-      <a href="#sobre">Sobre</a>
-      <a href="#resultados">Resultados</a>
-      <a href="#divulgacao">Divulgação</a>
-      <a href="#contato">Contato</a>
-    </nav>
   </div>
-</header>
 
-<main class="wrap">
+  <main id="conteudo" aria-label="Conteúdo principal">
+    <div class="wrap">
 
-<section id="sobre">
-  <h2>Sobre a Plataforma</h2>
-  <p class="muted">
-    Ambiente digital destinado à organização, monitoramento e transparência das ações vinculadas ao projeto BigPush Sustentabilidade,
-    estruturado com base em evidências técnico-científicas e governança institucional.
-  </p>
-</section>
+      <!-- MÓDULOS -->
+      <section id="modulos">
+        <div class="head">
+          <h2>Módulos SIPA — organização dos sistemas demonstrativos</h2>
+          <span class="tag">Arquitetura experimental</span>
+        </div>
 
-<section id="resultados">
-  <h2>Indicadores Técnicos — Linha de Base 2024</h2>
-  <p class="muted">
-    Em 2024 foi realizada a primeira campanha oficial de amostragem e análise química de solos dos módulos experimentais vinculados
-    à Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA), estabelecendo o marco zero
-    do monitoramento longitudinal.
-  </p>
-  <p class="muted">
-    Os dados indicam aptidão estrutural compatível com intensificação sustentável, com destaque para limitação inicial de fósforo
-    e potencial de resposta progressiva por ciclos produtivos sucessivos.
-  </p>
-</section>
+        <p class="muted">
+          A unidade está estruturada em módulos comparativos de Sistemas Integrados de Produção Agropecuária (SIPA).
+          Nesta etapa, os módulos encontram-se em diferentes graus de implantação e consolidação, orientando a leitura técnica por ciclos.
+        </p>
 
-<section id="divulgacao">
-  <h2>Divulgação e Mídia</h2>
+        <div class="grid" aria-label="Módulos SIPA">
+          <div class="card">
+            <h3>iLP — Integração Lavoura–Pecuária</h3>
+            <p class="muted">Ênfase: ciclagem de nutrientes, cobertura do solo e eficiência de uso por ciclos.</p>
+            <div class="row">
+              <span class="badge ok">Implantação: em andamento</span>
+              <span class="badge info">Evidência atual: linha de base</span>
+              <span class="badge warn">Integração plena: ciclos futuros</span>
+            </div>
+          </div>
 
-  <div class="grid">
+          <div class="card">
+            <h3>iLF — Integração Lavoura–Floresta</h3>
+            <p class="muted">Ênfase: efeito arbóreo sobre ambiente, solo e produção (médio/longo prazo).</p>
+            <div class="row">
+              <span class="badge ok">Implantação: em consolidação</span>
+              <span class="badge warn">Efeito arbóreo: longo prazo</span>
+              <span class="badge info">Evidência atual: linha de base</span>
+            </div>
+          </div>
 
-    <div class="card">
-      <h3>Como a inovação e a tecnologia podem colocar o agronegócio gaúcho em um novo patamar</h3>
-      <p class="muted">Entrevista em podcast – Spotify</p>
-      <a href="https://open.spotify.com/episode/7GUvDompjaOfT0asEjrEhi" target="_blank">
-        Ouvir episódio
-      </a>
+          <div class="card">
+            <h3>iLPF — Integração Lavoura–Pecuária–Floresta</h3>
+            <p class="muted">Ênfase: integração sistêmica e avaliação do componente arbóreo estabelecido.</p>
+            <div class="row">
+              <span class="badge ok">Implantação: fase inicial</span>
+              <span class="badge warn">Efeito arbóreo: longo prazo</span>
+              <span class="badge info">Evidência atual: linha de base</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>iPF — Integração Pecuária–Floresta</h3>
+            <p class="muted">Ênfase: conforto térmico, dinâmica de pastejo e ciclagem via componente animal.</p>
+            <div class="row">
+              <span class="badge ok">Implantação: em andamento</span>
+              <span class="badge warn">Efeito arbóreo: médio/longo prazo</span>
+              <span class="badge info">Evidência atual: linha de base</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTADOS -->
+      <section id="resultados">
+        <div class="head">
+          <h2>Resultados — análise de solos (linha de base, 2024)</h2>
+          <span class="tag">Síntese executiva</span>
+        </div>
+
+        <p class="muted">
+          Em 2024 foi realizada a primeira campanha oficial de amostragem e análise química de solos dos módulos experimentais,
+          estabelecendo o marco zero do monitoramento edáfico e a base para comparação longitudinal entre sistemas.
+        </p>
+
+        <div class="toc" aria-label="Sumário dos resultados">
+          <strong>Sumário (clique para navegar)</strong>
+          <div class="links">
+            <a href="#res-marco" data-toc>Marco zero</a>
+            <a href="#res-aptidao" data-toc>Aptidão e estrutura</a>
+            <a href="#res-limitacoes" data-toc>Limitações</a>
+            <a href="#res-potencial" data-toc>Potencial</a>
+            <a href="#res-coerencia" data-toc>Coerência</a>
+          </div>
+        </div>
+
+        <div class="subsec" id="res-marco" data-subsec>
+          <h3>Marco zero do monitoramento</h3>
+          <ul class="bullets">
+            <li>Estabelece a linha de base para séries temporais de indicadores químicos do solo.</li>
+            <li>Resultados refletem predominantemente condições históricas, dado estágio inicial de implantação.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="res-aptidao" data-subsec>
+          <h3>Aptidão e estrutura edáfica</h3>
+          <ul class="bullets">
+            <li>Textura média a argilosa: maior retenção de nutrientes e potencial de resposta via matéria orgânica.</li>
+            <li>CTC compatível com intensificação sustentável, condicionada a manejo e continuidade de ciclos.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="res-limitacoes" data-subsec>
+          <h3>Limitações iniciais</h3>
+          <ul class="bullets">
+            <li>Acidez em parte dos piquetes e alumínio trocável localizado: condição regional típica e manejável.</li>
+            <li>Fósforo como principal limitação inicial: resposta lenta esperada (adsorção elevada em solos argilosos).</li>
+            <li>K, Ca e Mg em condição geral satisfatória/intermediária.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="res-potencial" data-subsec>
+          <h3>Potencial de evolução sob SIPA</h3>
+          <ul class="bullets">
+            <li>Expectativa de incremento gradual de MO e melhora do equilíbrio entre bases com biomassa e ciclagem radicular.</li>
+            <li>Eficiência de uso do P tende a melhorar com atividade biológica e diversificação radicular, com latência temporal.</li>
+            <li>Em módulos com pecuária: maior redistribuição superficial de nutrientes em pastejo manejado.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="res-coerencia" data-subsec>
+          <h3>Coerência metodológica</h3>
+          <ul class="bullets">
+            <li>Ausência de diferenças estruturais consolidadas é esperada no estágio inicial.</li>
+            <li>Efeitos estruturais tornam-se mais mensuráveis após múltiplos ciclos (MO, pH, V%, CTC efetiva, etc.).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PARTICIPAÇÃO (QUÁDRUPLA HÉLICE) -->
+      <section id="participacao">
+        <div class="head">
+          <h2>Participação — Quádrupla Hélice</h2>
+          <span class="tag">Engajamento e cooperação</span>
+        </div>
+
+        <p class="muted">
+          A participação de agentes da Quádrupla Hélice (governo, academia, setor produtivo e sociedade civil) é componente estruturante do projeto,
+          com foco em cooperação, validação tecnológica, difusão de práticas e fortalecimento do ecossistema regional de inovação.
+        </p>
+
+        <div class="toc" aria-label="Sumário de participação">
+          <strong>Sumário (clique para navegar)</strong>
+          <div class="links">
+            <a href="#part-governo" data-toc-part>Governo</a>
+            <a href="#part-academia" data-toc-part>Academia</a>
+            <a href="#part-setor" data-toc-part>Setor Produtivo</a>
+            <a href="#part-sociedade" data-toc-part>Sociedade Civil</a>
+          </div>
+        </div>
+
+        <div class="subsec" id="part-governo" data-subsec-part>
+          <h3>Governo</h3>
+          <ul class="bullets">
+            <li>Articulação institucional para alinhamento com políticas públicas de inovação e sustentabilidade.</li>
+            <li>Apoio à governança, escalabilidade e replicabilidade de tecnologias validadas na unidade.</li>
+            <li>Integração com programas e iniciativas regionais para ampliação de impacto e difusão.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="part-academia" data-subsec-part>
+          <h3>Academia (ensino e pesquisa)</h3>
+          <ul class="bullets">
+            <li>Desenvolvimento de pesquisa aplicada, protocolos e indicadores de monitoramento (solo, planta, animal e ambiente).</li>
+            <li>Co-orientação e participação em projetos, estágios, TCCs, dissertações e produção técnico-científica.</li>
+            <li>Intercâmbio técnico e uso da unidade como ambiente permanente de experimentação e formação.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="part-setor" data-subsec-part>
+          <h3>Setor Produtivo</h3>
+          <ul class="bullets">
+            <li>Cooperação para validação tecnológica, testes de campo e avaliação de viabilidade produtiva.</li>
+            <li>Participação em dias de campo, demonstrações, capacitações e rotas de difusão tecnológica.</li>
+            <li>Proposição de demandas, problemas reais e temas prioritários para inovação e melhoria de produtividade.</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="part-sociedade" data-subsec-part>
+          <h3>Sociedade Civil</h3>
+          <ul class="bullets">
+            <li>Participação em ações de extensão, educação e sensibilização sobre sustentabilidade e inovação no campo.</li>
+            <li>Interação em eventos, visitas técnicas e iniciativas de difusão voltadas às pequenas propriedades rurais.</li>
+            <li>Fortalecimento da transparência e do acompanhamento social por meio de divulgação pública de evidências.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PUBLICAÇÕES -->
+      <section id="publicacoes">
+        <div class="head">
+          <h2>Produção técnico-científica</h2>
+          <span class="tag">Publicações e resultados</span>
+        </div>
+
+        <p class="muted">
+          Esta seção será abastecida conforme a publicação de artigos, trabalhos em eventos, relatórios técnicos e produtos acadêmicos vinculados ao projeto.
+        </p>
+
+        <div class="grid" aria-label="Publicações (modelo)">
+          <div class="card">
+            <h3>[Título da publicação]</h3>
+            <p class="muted">Autores: [Nome 1; Nome 2; ...]</p>
+            <p class="muted">Veículo: [Revista/Eventos] • Ano: [AAAA]</p>
+            <div class="row">
+              <span class="badge info">Tipo: Artigo</span>
+              <span class="badge ok">Status: Publicado</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener">Acessar</a>
+          </div>
+
+          <div class="card">
+            <h3>[Título do trabalho em evento]</h3>
+            <p class="muted">Autores: [Nome 1; Nome 2; ...]</p>
+            <p class="muted">Evento: [Nome do evento] • Ano: [AAAA]</p>
+            <div class="row">
+              <span class="badge info">Tipo: Evento</span>
+              <span class="badge warn">Status: Aceito/Em andamento</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener">Acessar</a>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:12px;">
+          <strong>Como adicionar uma nova publicação:</strong> copie um card acima, cole abaixo e substitua os campos entre colchetes.
+        </p>
+      </section>
+
+      <!-- DIVULGAÇÃO -->
+      <section id="divulgacao">
+        <div class="head">
+          <h2>Divulgação e mídia</h2>
+          <span class="tag">Comunicação institucional</span>
+        </div>
+
+        <p class="muted">
+          Registros públicos de entrevistas, notícias e menções em portais, consolidando evidências de divulgação do projeto.
+        </p>
+
+        <div class="grid" aria-label="Divulgação do projeto">
+          <div class="card">
+            <h3>Como a inovação e a tecnologia podem colocar o agronegócio gaúcho em um novo patamar</h3>
+            <p class="muted">Podcast (Spotify)</p>
+            <a href="https://open.spotify.com/episode/7GUvDompjaOfT0asEjrEhi" target="_blank" rel="noopener">Ouvir episódio</a>
+          </div>
+
+          <div class="card">
+            <h3>IFFar-FW e Cotrifred desenvolverão projeto estratégico alinhado ao ecossistema gaúcho de inovação (2023–2024)</h3>
+            <p class="muted">Notícia institucional (IFFar)</p>
+            <a href="https://www.iffarroupilha.edu.br/noticias-fw/item/29451-iffar-fw-em-parceria-com-a-cooperativa-trit%C3%ADcola-de-frederico-westphalen-cotrifred-,-desenvolver%C3%A1-projeto-estrat%C3%A9gico-alinhado-ao-ecossistema-ga%C3%BAcho-de-inova%C3%A7%C3%A3o-em-2023-e-2024" target="_blank" rel="noopener">Ler matéria</a>
+          </div>
+
+          <div class="card">
+            <h3>Região Produção e Norte sedia o sétimo encontro do Rotas da Inovação</h3>
+            <p class="muted">Portal Inova RS</p>
+            <a href="https://inova.rs.gov.br/regiao-producao-e-norte-sedia-o-setimo-encontro-do-rotas-da-inovacao" target="_blank" rel="noopener">Acessar publicação</a>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:12px;">
+          <strong>Como adicionar novos links:</strong> copie um card e atualize título, tipo e URL.
+        </p>
+      </section>
+
+      <!-- GALERIA -->
+      <section id="galeria">
+        <div class="head">
+          <h2>Galeria de fotos</h2>
+          <span class="tag">Atualização contínua</span>
+        </div>
+
+        <p class="muted">
+          As fotos do projeto são organizadas em uma pasta compartilhada no Google Drive. Novos registros são adicionados continuamente ao mesmo link,
+          mantendo a galeria sempre atualizada.
+        </p>
+
+        <a class="btn primary"
+           href="https://drive.google.com/drive/folders/1M9_YQPx0axQoyQnQOXGAJeceuaHtwaa1?usp=drive_link"
+           target="_blank" rel="noopener">
+          Acessar galeria no Google Drive
+        </a>
+      </section>
+
+      <!-- PARCEIROS -->
+      <section id="parceiros">
+        <div class="head">
+          <h2>Instituições parceiras</h2>
+          <span class="tag">Integração institucional</span>
+        </div>
+
+        <p class="muted">
+          O projeto BigPush para Sustentabilidade resulta da articulação entre o Instituto Federal Farroupilha (IFFar),
+          a Secretaria de Inovação, Ciência e Tecnologia do Estado do Rio Grande do Sul (SICT) e a COTRIFRED.
+        </p>
+
+        <div class="partners" aria-label="Logos dos parceiros">
+          <div class="partner">
+            <img src="assets/IFFar.png" alt="Instituto Federal Farroupilha (IFFar)" />
+            <div class="name">Instituto Federal Farroupilha (IFFar)</div>
+            <div class="desc">Instituição executora e base técnico-científica</div>
+          </div>
+
+          <div class="partner">
+            <img src="assets/sict.png" alt="Secretaria de Inovação, Ciência e Tecnologia (SICT/RS)" />
+            <div class="name">SICT/RS</div>
+            <div class="desc">Parceira institucional no apoio e fomento</div>
+          </div>
+
+          <div class="partner">
+            <img src="assets/cotrifred.png" alt="COTRIFRED" />
+            <div class="name">COTRIFRED</div>
+            <div class="desc">Parceira estratégica com interface regional</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTATO -->
+      <section id="contato">
+        <div class="head">
+          <h2>Contato e localização</h2>
+          <span class="tag">Canal oficial</span>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Contato</h3>
+            <p>
+              E-mail:
+              <a href="mailto:rangel.pacheco@iffar.edu.br" style="color:var(--moss); font-weight:900; text-decoration:none;">
+                rangel.pacheco@iffar.edu.br
+              </a>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Unidade experimental</h3>
+            <p class="muted">
+              BR 368, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
+            </p>
+          </div>
+        </div>
+      </section>
+
     </div>
+  </main>
 
-    <div class="card">
-      <h3>IFFar-FW e Cotrifred desenvolvem projeto estratégico alinhado ao ecossistema gaúcho de inovação</h3>
-      <p class="muted">Notícia institucional – IFFar</p>
-      <a href="https://www.iffarroupilha.edu.br/noticias-fw/item/29451-iffar-fw-em-parceria-com-a-cooperativa-trit%C3%ADcola-de-frederico-westphalen-cotrifred-,-desenvolver%C3%A1-projeto-estrat%C3%A9gico-alinhado-ao-ecossistema-ga%C3%BAcho-de-inova%C3%A7%C3%A3o-em-2023-e-2024" target="_blank">
-        Ler matéria
-      </a>
+  <footer aria-label="Rodapé">
+    <div class="wrap">
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
+        <div>© <span id="year"></span> BigPush Sustentabilidade</div>
+        <div><a href="#contato">Contato</a></div>
+      </div>
     </div>
+  </footer>
 
-    <div class="card">
-      <h3>Região Produção e Norte sedia o sétimo encontro do Rotas da Inovação</h3>
-      <p class="muted">Portal Inova RS</p>
-      <a href="https://inova.rs.gov.br/regiao-producao-e-norte-sedia-o-setimo-encontro-do-rotas-da-inovacao" target="_blank">
-        Acessar publicação
-      </a>
-    </div>
+  <a class="to-top" href="#conteudo" aria-label="Voltar ao topo">↑ Topo</a>
 
-  </div>
-</section>
+  <script>
+    // Ano
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<section id="contato">
-  <h2>Contato</h2>
-  <p>
-    E-mail: <strong>rangel.pacheco@iffar.edu.br</strong><br>
-    BR 368, km 40 – Frederico Westphalen/RS
-  </p>
-</section>
+    // Botão “Topo”
+    const toTop = document.querySelector(".to-top");
+    const toggleTop = () => {
+      if (window.scrollY > 450) toTop.classList.add("show");
+      else toTop.classList.remove("show");
+    };
+    window.addEventListener("scroll", toggleTop, { passive: true });
+    toggleTop();
 
-</main>
+    // Menu ativo (header)
+    const navLinks = Array.from(document.querySelectorAll("nav a"));
+    const navSections = navLinks
+      .map(a => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
 
-<footer>
-  © <span id="year"></span> BigPush Sustentabilidade
-</footer>
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = "#" + entry.target.id;
+        navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.02 });
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+    navSections.forEach(s => navObs.observe(s));
 
+    // TOC ativo (Resultados)
+    const tocLinks = Array.from(document.querySelectorAll("[data-toc]"));
+    const subSecs = Array.from(document.querySelectorAll("[data-subsec]"));
+    if (tocLinks.length && subSecs.length) {
+      const tocObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = "#" + entry.target.id;
+          tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+        });
+      }, { rootMargin: "-25% 0px -65% 0px", threshold: 0.02 });
+
+      subSecs.forEach(s => tocObs.observe(s));
+    }
+
+    // TOC ativo (Participação)
+    const tocPartLinks = Array.from(document.querySelectorAll("[data-toc-part]"));
+    const subPartSecs = Array.from(document.querySelectorAll("[data-subsec-part]"));
+    if (tocPartLinks.length && subPartSecs.length) {
+      const tocPartObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = "#" + entry.target.id;
+          tocPartLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+        });
+      }, { rootMargin: "-25% 0px -65% 0px", threshold: 0.02 });
+
+      subPartSecs.forEach(s => tocPartObs.observe(s));
+    }
+  </script>
 </body>
 </html>
