@@ -537,6 +537,30 @@ nav#mainNav a.active {
     border: 1px solid rgba(255,255,255,.10);
   }
 }
+/* ===== FIX: evitar menu duplicado no desktop ===== */
+
+/* Desktop (padrão): mostra nav desktop, esconde menu mobile e botão */
+.menuBtn { display: none !important; }
+.mobileNav { display: none !important; }
+#mainNav { display: flex !important; }
+
+/* Mobile: esconde nav desktop e habilita menu mobile via .open */
+@media (max-width: 980px){
+  #mainNav { display: none !important; }
+  .menuBtn { display: inline-flex !important; }
+  .mobileNav { display: none !important; }
+  .mobileNav.open { display: block !important; }
+
+  .mobileNav .gridLinks{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px){
+  .mobileNav .gridLinks{ grid-template-columns: 1fr; }
+}
 
 @media (max-width: 560px){
   .mobileNav .gridLinks{ grid-template-columns: 1fr; }
