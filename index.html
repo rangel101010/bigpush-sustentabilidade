@@ -8,14 +8,6 @@
   <meta name="description" content="Plataforma BigPush Sustentabilidade – evidências, governança técnica e monitoramento de módulos SIPA." />
   <meta name="theme-color" content="#2f4f3a" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="BigPush Sustentabilidade" />
-  <meta property="og:description" content="Evidências e governança técnica em módulos SIPA (iLP • iLF • iLPF • iPF) — implantação, consolidação e avaliação por ciclos." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.bigpushsustentabilidade.com.br/" />
-  <meta property="og:image" content="https://www.bigpushsustentabilidade.com.br/assets/og-cover.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
   <style>
     :root{
       --bg: #f6f8f6;
@@ -44,9 +36,10 @@
     body{
       margin:0;
       font-family: var(--font);
-      background: radial-gradient(1100px 500px at 20% -10%, rgba(63,107,78,.14), transparent 60%),
-                  radial-gradient(900px 500px at 85% 0%, rgba(47,79,58,.10), transparent 55%),
-                  var(--bg);
+      background:
+        radial-gradient(1100px 500px at 20% -10%, rgba(63,107,78,.14), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(47,79,58,.10), transparent 55%),
+        var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
@@ -126,7 +119,7 @@
     nav a{
       color:#fff;
       text-decoration:none;
-      font-weight: 750;
+      font-weight: 780;
       font-size: 13px;
       padding: 9px 11px;
       border-radius: 12px;
@@ -139,67 +132,179 @@
     nav a.active{ background: rgba(255,255,255,.22); }
 
     /* Hero */
-    .hero{ padding: 22px 0 18px; }
+    .hero{ padding: 18px 0 18px; }
     .hero .panel{
       border: 1px solid var(--border);
       border-radius: var(--radius-2);
-      background:
-        radial-gradient(850px 340px at 10% 0%, rgba(63,107,78,.18), transparent 60%),
-        radial-gradient(700px 340px at 95% 5%, rgba(47,79,58,.16), transparent 55%),
-        linear-gradient(180deg, #ffffff, #fbfcfb);
       box-shadow: var(--shadow);
       overflow: hidden;
+      background: #fff;
     }
 
-    .hero .inner{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items:center;
-      padding: 22px;
+    /* Slider — FOTO INTEIRA (contain) */
+    .slider{
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      background:
+        radial-gradient(950px 300px at 15% 0%, rgba(63,107,78,.18), transparent 60%),
+        radial-gradient(750px 300px at 90% 10%, rgba(47,79,58,.14), transparent 55%),
+        #0e1511;
+    }
+    .slides{
+      position:absolute;
+      inset:0;
+    }
+    .slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition: opacity .9s ease;
+
+      /* chave: mostrar a foto inteira */
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      /* melhora leve de contraste/cores sem “estourar” */
+      filter: saturate(1.02) contrast(1.01);
+    }
+    .slide.active{ opacity:1; }
+
+    /* overlay leve p/ legibilidade */
+    .slider::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.44));
+      pointer-events:none;
     }
 
-    .kicker{
+    .slider-ui{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      padding: 14px;
+      z-index: 2;
+      pointer-events:none;
+    }
+
+    .slider-title{
+      pointer-events:none;
+      color:#fff;
+      max-width: 82ch;
+    }
+    .slider-title .kicker{
       display:inline-flex;
       align-items:center;
       gap: 8px;
       padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(47,79,58,.08);
-      border: 1px solid rgba(47,79,58,.14);
-      color: var(--moss);
-      font-weight: 800;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.95);
+      font-weight: 900;
       font-size: 12px;
       letter-spacing: .2px;
       width: fit-content;
       margin-bottom: 10px;
     }
-    .dot{
+    .kdot{
       width:8px; height:8px; border-radius: 50%;
-      background: var(--moss);
-      box-shadow: 0 0 0 4px rgba(47,79,58,.14);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255,255,255,.12);
     }
-    .hero h1{
-      margin: 0 0 10px;
-      font-size: 30px;
-      line-height: 1.15;
-      color: var(--moss-3);
+    .slider-title h1{
+      margin: 0 0 6px;
+      font-size: 28px;
+      line-height: 1.12;
       letter-spacing: -0.3px;
+      color:#fff;
+      text-shadow: 0 10px 22px rgba(0,0,0,.22);
     }
-    .hero p{
+    .slider-title p{
+      margin:0;
+      font-size: 14.8px;
+      color: rgba(255,255,255,.90);
+      text-shadow: 0 10px 22px rgba(0,0,0,.22);
+    }
+
+    .slider-controls{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items:flex-end;
+      pointer-events:auto;
+    }
+    .arrow-row{ display:flex; gap: 10px; }
+    .sbtn{
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.10);
+      color:#fff;
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor:pointer;
+      box-shadow: 0 12px 20px rgba(0,0,0,.18);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .sbtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
+
+    .dots{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 12px 20px rgba(0,0,0,.18);
+    }
+    .dotbtn{
+      width:10px; height:10px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.55);
+      background: rgba(255,255,255,.20);
+      cursor:pointer;
+    }
+    .dotbtn.active{ background:#fff; }
+
+    /* Conteúdo do hero abaixo do slider */
+    .hero .inner{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:start;
+      padding: 18px 22px;
+      background:
+        radial-gradient(850px 340px at 10% 0%, rgba(63,107,78,.10), transparent 60%),
+        radial-gradient(700px 340px at 95% 5%, rgba(47,79,58,.08), transparent 55%),
+        linear-gradient(180deg, #ffffff, #fbfcfb);
+    }
+    .hero h2{
       margin: 0 0 10px;
-      color: var(--muted);
+      font-size: 16px;
+      color: var(--moss-3);
+      letter-spacing: .1px;
+    }
+    .hero .text p{
+      margin: 0 0 10px;
       font-size: 15.2px;
+      color: var(--muted);
       max-width: 82ch;
     }
-    .hero p:last-child{ margin-bottom: 0; }
+    .hero .text p:last-child{ margin-bottom: 0; }
 
     .cta{
       display:flex;
       flex-direction:column;
       gap: 10px;
       align-items: stretch;
-      justify-content:center;
+      justify-content:flex-start;
     }
     .btn{
       display:inline-flex;
@@ -207,7 +312,7 @@
       justify-content:center;
       gap: 10px;
       text-decoration:none;
-      font-weight: 850;
+      font-weight: 880;
       border-radius: 14px;
       padding: 12px 14px;
       border: 1px solid var(--border);
@@ -229,10 +334,11 @@
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      padding: 0 22px 20px;
+      padding: 0 22px 18px;
+      background: linear-gradient(180deg, #fbfcfb, #ffffff);
     }
     .pill{
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.92);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 10px 12px;
@@ -283,7 +389,7 @@
       padding: 6px 10px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 850;
       color: var(--moss);
       background: rgba(47,79,58,.08);
       border: 1px solid rgba(47,79,58,.14);
@@ -326,9 +432,7 @@
     .card a:hover{ text-decoration: underline; }
 
     /* Evidence panel */
-    .evidence{
-      margin-top: 12px;
-    }
+    .evidence{ margin-top: 12px; }
     .ev-title{
       font-size: 13px;
       font-weight: 900;
@@ -520,6 +624,7 @@
       pointer-events: none;
       transform: translateY(6px);
       transition: opacity .16s ease, transform .16s ease;
+      z-index: 60;
     }
     .to-top.show{
       opacity: 1;
@@ -527,13 +632,23 @@
       transform: translateY(0);
     }
 
+    /* Reduz movimento (acessibilidade) */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      .slide{ transition: none; }
+    }
+
+    @media (max-width: 960px){
+      nav{ justify-content:flex-start; }
+      .brandbar{ min-width: auto; }
+    }
     @media (max-width: 860px){
       .hero .inner{ grid-template-columns: 1fr; }
       .cta{ flex-direction: row; flex-wrap: wrap; }
       .btn{ flex: 1 1 180px; }
-      nav{ justify-content:flex-start; }
       .status{ grid-template-columns: 1fr; }
-      .brandbar{ min-width: auto; }
+      .slider{ height: 290px; }
+      .slider-title h1{ font-size: 24px; }
     }
   </style>
 </head>
@@ -558,7 +673,6 @@
         <a href="#modulos">Módulos SIPA</a>
         <a href="#resultados">Resultados</a>
         <a href="#participacao">Participação</a>
-        <a href="#publicacoes">Publicações</a>
         <a href="#divulgacao">Divulgação</a>
         <a href="#galeria">Galeria</a>
         <a href="#parceiros">Parceiros</a>
@@ -571,10 +685,37 @@
   <div class="hero" id="apresentacao">
     <div class="wrap">
       <div class="panel">
+
+        <!-- SLIDER -->
+        <div class="slider" id="heroSlider" aria-label="Carrossel de imagens do projeto">
+          <div class="slides">
+            <div class="slide active" style="background-image:url('assets/sipa-ovinos.jpeg');" role="img" aria-label="SIPA — módulo com ovinos"></div>
+            <div class="slide" style="background-image:url('assets/sipa-ipf.jpeg');" role="img" aria-label="SIPA — visão aérea da unidade"></div>
+            <div class="slide" style="background-image:url('assets/sipa-bovinos.jpeg');" role="img" aria-label="SIPA — módulo com bovinos"></div>
+            <div class="slide" style="background-image:url('assets/sipa-ilpf.jpeg');" role="img" aria-label="SIPA — módulo ILPF"></div>
+          </div>
+
+          <div class="slider-ui">
+            <div class="slider-title">
+              <div class="kicker"><span class="kdot" aria-hidden="true"></span> Unidade de Referência Científica e Tecnológica em SIPA</div>
+              <h1>Big Push para Sustentabilidade</h1>
+              <p>Implantação, consolidação e avaliação por ciclos em módulos SIPA (iLP • iLF • iLPF • iPF).</p>
+            </div>
+
+            <div class="slider-controls" aria-label="Controles do carrossel">
+              <div class="arrow-row">
+                <button class="sbtn" type="button" id="prevSlide" aria-label="Imagem anterior">←</button>
+                <button class="sbtn" type="button" id="nextSlide" aria-label="Próxima imagem">→</button>
+              </div>
+              <div class="dots" id="sliderDots" aria-label="Indicadores do carrossel"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEXTO + CTAs -->
         <div class="inner">
-          <div>
-            <div class="kicker"><span class="dot" aria-hidden="true"></span> Unidade de Referência Científica e Tecnológica em SIPA</div>
-            <h1>Big Push para Sustentabilidade</h1>
+          <div class="text">
+            <h2>Apresentação técnico-institucional</h2>
 
             <p class="muted">
               O projeto Big Push para Sustentabilidade consiste na implantação de uma Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA)
@@ -603,7 +744,7 @@
         <div class="status" aria-label="Status do projeto">
           <div class="pill">
             <strong>Fase</strong>
-            <span>Implantação e consolidação inicial (plataforma e unidade experimental)</span>
+            <span>Implantação e consolidação inicial (unidade experimental + plataforma)</span>
           </div>
           <div class="pill">
             <strong>Arquitetura</strong>
@@ -618,6 +759,7 @@
             <span>Pesquisa aplicada, validação tecnológica e difusão para a região</span>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -788,7 +930,7 @@
         </div>
       </section>
 
-      <!-- PARTICIPAÇÃO (QUÁDRUPLA HÉLICE) -->
+      <!-- PARTICIPAÇÃO -->
       <section id="participacao">
         <div class="head">
           <h2>Participação — Quádrupla Hélice</h2>
@@ -822,8 +964,8 @@
         <div class="subsec" id="part-academia" data-subsec-part>
           <h3>Academia (ensino e pesquisa)</h3>
           <ul class="bullets">
-            <li>Desenvolvimento de pesquisa aplicada, protocolos e indicadores de monitoramento (solo, planta, animal e ambiente).</li>
-            <li>Co-orientação e participação em projetos, estágios, TCCs, dissertações e produção técnico-científica.</li>
+            <li>Desenvolvimento de pesquisa aplicada, protocolos e indicadores (solo, planta, animal e ambiente).</li>
+            <li>Participação em projetos, estágios, TCCs, dissertações e produção técnico-científica vinculada.</li>
             <li>Intercâmbio técnico e uso da unidade como ambiente permanente de experimentação e formação.</li>
           </ul>
         </div>
@@ -841,50 +983,10 @@
           <h3>Sociedade Civil</h3>
           <ul class="bullets">
             <li>Participação em ações de extensão, educação e sensibilização sobre sustentabilidade e inovação no campo.</li>
-            <li>Interação em eventos, visitas técnicas e iniciativas de difusão voltadas às pequenas propriedades rurais.</li>
-            <li>Fortalecimento da transparência e do acompanhamento social por meio de divulgação pública de evidências.</li>
+            <li>Interação em eventos, visitas técnicas e iniciativas voltadas às pequenas propriedades rurais.</li>
+            <li>Fortalecimento da transparência e acompanhamento social via divulgação pública de evidências.</li>
           </ul>
         </div>
-      </section>
-
-      <!-- PUBLICAÇÕES -->
-      <section id="publicacoes">
-        <div class="head">
-          <h2>Produção técnico-científica</h2>
-          <span class="tag">Publicações e resultados</span>
-        </div>
-
-        <p class="muted">
-          Esta seção será abastecida conforme a publicação de artigos, trabalhos em eventos, relatórios técnicos e produtos acadêmicos vinculados ao projeto.
-        </p>
-
-        <div class="grid" aria-label="Publicações (modelo)">
-          <div class="card">
-            <h3>[Título da publicação]</h3>
-            <p class="muted">Autores: [Nome 1; Nome 2; ...]</p>
-            <p class="muted">Veículo: [Revista/Eventos] • Ano: [AAAA]</p>
-            <div class="row">
-              <span class="badge info">Tipo: Artigo</span>
-              <span class="badge ok">Status: Publicado</span>
-            </div>
-            <a href="#" target="_blank" rel="noopener">Acessar</a>
-          </div>
-
-          <div class="card">
-            <h3>[Título do trabalho em evento]</h3>
-            <p class="muted">Autores: [Nome 1; Nome 2; ...]</p>
-            <p class="muted">Evento: [Nome do evento] • Ano: [AAAA]</p>
-            <div class="row">
-              <span class="badge info">Tipo: Evento</span>
-              <span class="badge warn">Status: Aceito/Em andamento</span>
-            </div>
-            <a href="#" target="_blank" rel="noopener">Acessar</a>
-          </div>
-        </div>
-
-        <p class="muted" style="margin-top:12px;">
-          <strong>Como adicionar uma nova publicação:</strong> copie um card acima, cole abaixo e substitua os campos entre colchetes.
-        </p>
       </section>
 
       <!-- DIVULGAÇÃO -->
@@ -917,10 +1019,6 @@
             <a href="https://inova.rs.gov.br/regiao-producao-e-norte-sedia-o-setimo-encontro-do-rotas-da-inovacao" target="_blank" rel="noopener">Acessar publicação</a>
           </div>
         </div>
-
-        <p class="muted" style="margin-top:12px;">
-          <strong>Como adicionar novos links:</strong> copie um card e atualize título, tipo e URL.
-        </p>
       </section>
 
       <!-- GALERIA -->
@@ -1045,34 +1143,87 @@
 
     navSections.forEach(s => navObs.observe(s));
 
+    // Carrossel
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dotsWrap = document.getElementById("sliderDots");
+    const prevBtn = document.getElementById("prevSlide");
+    const nextBtn = document.getElementById("nextSlide");
+
+    let idx = 0;
+    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // cria dots
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.className = "dotbtn" + (i === 0 ? " active" : "");
+      b.type = "button";
+      b.setAttribute("aria-label", `Ir para a imagem ${i+1}`);
+      b.addEventListener("click", () => goTo(i));
+      dotsWrap.appendChild(b);
+    });
+
+    const dots = Array.from(document.querySelectorAll(".dotbtn"));
+
+    function paint(){
+      slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+      dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+    }
+    function goTo(i){
+      idx = (i + slides.length) % slides.length;
+      paint();
+    }
+    function next(){ goTo(idx + 1); }
+    function prev(){ goTo(idx - 1); }
+
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
+
+    // auto-play (pausa ao interagir)
+    let timer = null;
+    function start(){
+      if (prefersReduced) return;
+      stop();
+      timer = setInterval(next, 5200);
+    }
+    function stop(){
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    const slider = document.getElementById("heroSlider");
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+    slider.addEventListener("focusin", stop);
+    slider.addEventListener("focusout", start);
+
+    start();
+
     // TOC ativo (Resultados)
     const tocLinks = Array.from(document.querySelectorAll("[data-toc]"));
-    const subSecs = Array.from(document.querySelectorAll("[data-subsec]"));
-    if (tocLinks.length && subSecs.length) {
+    const tocSecs  = Array.from(document.querySelectorAll("[data-subsec]"));
+    if (tocLinks.length && tocSecs.length){
       const tocObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           const id = "#" + entry.target.id;
           tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
         });
-      }, { rootMargin: "-25% 0px -65% 0px", threshold: 0.02 });
-
-      subSecs.forEach(s => tocObs.observe(s));
+      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+      tocSecs.forEach(s => tocObs.observe(s));
     }
 
     // TOC ativo (Participação)
-    const tocPartLinks = Array.from(document.querySelectorAll("[data-toc-part]"));
-    const subPartSecs = Array.from(document.querySelectorAll("[data-subsec-part]"));
-    if (tocPartLinks.length && subPartSecs.length) {
-      const tocPartObs = new IntersectionObserver((entries) => {
+    const tocLinksP = Array.from(document.querySelectorAll("[data-toc-part]"));
+    const tocSecsP  = Array.from(document.querySelectorAll("[data-subsec-part]"));
+    if (tocLinksP.length && tocSecsP.length){
+      const tocObsP = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           const id = "#" + entry.target.id;
-          tocPartLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+          tocLinksP.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
         });
-      }, { rootMargin: "-25% 0px -65% 0px", threshold: 0.02 });
-
-      subPartSecs.forEach(s => tocPartObs.observe(s));
+      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+      tocSecsP.forEach(s => tocObsP.observe(s));
     }
   </script>
 </body>
