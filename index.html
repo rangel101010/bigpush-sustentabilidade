@@ -13,7 +13,6 @@
   <meta property="og:description" content="Evidências e governança técnica em módulos SIPA (iLP • iLF • iLPF • iPF) — implantação, consolidação e avaliação por ciclos." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.bigpushsustentabilidade.com.br/" />
-  <!-- Se ainda não criou a OG cover, pode comentar por enquanto -->
   <meta property="og:image" content="https://www.bigpushsustentabilidade.com.br/assets/og-cover.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -95,7 +94,7 @@
       display:flex;
       align-items:center;
       gap: 12px;
-      min-width: 300px;
+      min-width: 320px;
       color:#fff;
     }
     .brandbar img{
@@ -326,6 +325,34 @@
     }
     .card a:hover{ text-decoration: underline; }
 
+    /* Evidence panel */
+    .evidence{
+      margin-top: 12px;
+    }
+    .ev-title{
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--moss-3);
+      margin: 0 0 8px;
+      letter-spacing: .1px;
+    }
+    .evidence .card h3{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .ev-type{
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--moss);
+      background: rgba(47,79,58,.08);
+      border: 1px solid rgba(47,79,58,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
     /* Badges */
     .row{
       display:flex;
@@ -527,6 +554,7 @@
 
       <nav aria-label="Navegação principal">
         <a href="#apresentacao">Apresentação</a>
+        <a href="#evidencias">Evidências</a>
         <a href="#modulos">Módulos SIPA</a>
         <a href="#resultados">Resultados</a>
         <a href="#participacao">Participação</a>
@@ -539,7 +567,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO / APRESENTAÇÃO -->
   <div class="hero" id="apresentacao">
     <div class="wrap">
       <div class="panel">
@@ -567,7 +595,7 @@
           </div>
 
           <div class="cta" aria-label="Ações principais">
-            <a class="btn primary" href="#modulos">Ver Módulos SIPA</a>
+            <a class="btn primary" href="#evidencias">Painel de Evidências</a>
             <a class="btn" href="#participacao">Como Participar</a>
           </div>
         </div>
@@ -596,6 +624,48 @@
 
   <main id="conteudo" aria-label="Conteúdo principal">
     <div class="wrap">
+
+      <!-- PAINEL DE EVIDÊNCIAS -->
+      <section id="evidencias">
+        <div class="head">
+          <h2>Painel de Evidências e Documentos Oficiais</h2>
+          <span class="tag">Transparência e rastreabilidade</span>
+        </div>
+
+        <p class="muted">
+          Acesso público aos documentos estruturantes do projeto, organizados para fins de transparência, governança e rastreabilidade das entregas pactuadas.
+        </p>
+
+        <div class="evidence">
+          <p class="ev-title">Documentos-base (clique para acessar)</p>
+
+          <div class="grid" aria-label="Documentos oficiais">
+            <div class="card">
+              <h3>Projeto <span class="ev-type">Documento</span></h3>
+              <p class="muted">Apresentação e caracterização técnica do projeto (versão de referência).</p>
+              <a href="https://drive.google.com/file/d/1JO60y3KsEInxZ08f-yOgDGVgY-UR5Qp2/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            </div>
+
+            <div class="card">
+              <h3>Convênio <span class="ev-type">Instrumento</span></h3>
+              <p class="muted">Instrumento formal de parceria e execução, com condições e responsabilidades pactuadas.</p>
+              <a href="https://drive.google.com/file/d/1jLS3lbZwJOzIwWjskou1ELTzwqEQhkvo/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            </div>
+
+            <div class="card">
+              <h3>Plano de Trabalho <span class="ev-type">Plano</span></h3>
+              <p class="muted">Metas, cronograma e estrutura de execução vinculada ao instrumento de parceria.</p>
+              <a href="https://drive.google.com/file/d/14968GIO5tWa2RH9lj3qFsZoNV2jwbPYV/view?usp=drive_link" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            </div>
+
+            <div class="card">
+              <h3>Súmula DOE/RS <span class="ev-type">Publicação</span></h3>
+              <p class="muted">Registro público no Diário Oficial do Estado do Rio Grande do Sul.</p>
+              <a href="https://drive.google.com/file/d/1tK2Pxku2EACZW0I35SSRJCZlG5OeKmtt/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- MÓDULOS -->
       <section id="modulos">
@@ -763,7 +833,7 @@
           <ul class="bullets">
             <li>Cooperação para validação tecnológica, testes de campo e avaliação de viabilidade produtiva.</li>
             <li>Participação em dias de campo, demonstrações, capacitações e rotas de difusão tecnológica.</li>
-            <li>Proposição de demandas, problemas reais e temas prioritários para inovação e melhoria de produtividade.</li>
+            <li>Proposição de demandas e temas prioritários para inovação e melhoria de produtividade.</li>
           </ul>
         </div>
 
