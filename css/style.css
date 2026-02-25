@@ -453,3 +453,91 @@ footer a:hover{text-decoration:underline;}
   .slide{transition:none;}
   .drawer,.overlay{transition:none;}
 }
+/* ===========================
+   FIX HEADER (duplicação/ruído)
+   =========================== */
+
+/* Por padrão (desktop): mostra nav desktop, esconde mobile */
+.menuBtn { display: none !important; }
+.mobileNav { display: none !important; }
+
+/* Nav desktop mais “limpo” */
+header.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+.topbar .inner {
+  align-items: center;
+}
+
+nav#mainNav {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav#mainNav a {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff;
+  white-space: nowrap;
+}
+
+nav#mainNav a:hover {
+  background: rgba(255,255,255,.18);
+}
+
+nav#mainNav a.active {
+  background: rgba(255,255,255,.22);
+}
+
+/* Tablet: limita “quebra” excessiva (evita poluição) */
+@media (max-width: 1100px){
+  .brand span { max-width: 34ch; }
+  nav#mainNav { gap: 8px; }
+  nav#mainNav a { padding: 9px 10px; font-size: 12.8px; }
+}
+
+/* Mobile: esconde nav desktop e mostra botão hamburguer */
+@media (max-width: 980px){
+  nav#mainNav { display: none !important; }
+  .menuBtn { display: inline-flex !important; }
+  .mobileNav { display: none !important; }
+  .mobileNav.open { display: block !important; }
+}
+
+/* MobileNav com cards (limpo e clicável) */
+@media (max-width: 980px){
+  .mobileNav {
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding: 12px 0 14px;
+  }
+  .mobileNav .gridLinks{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .mobileNav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight: 850;
+    font-size: 13px;
+    padding: 12px 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+}
+
+@media (max-width: 560px){
+  .mobileNav .gridLinks{ grid-template-columns: 1fr; }
+}
