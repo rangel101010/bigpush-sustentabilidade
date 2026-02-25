@@ -3,167 +3,362 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>BigPush Sustentabilidade</title>
   <meta name="description" content="Plataforma BigPush Sustentabilidade – monitoramento, divulgação e transparência de ações e resultados do projeto." />
+  <meta name="theme-color" content="#2f4f3a" />
+
+  <!-- Open Graph (preview em WhatsApp/LinkedIn) -->
+  <meta property="og:title" content="BigPush Sustentabilidade" />
+  <meta property="og:description" content="Monitoramento, evidências e comunicação técnica do projeto BigPush para a Sustentabilidade." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.bigpushsustentabilidade.com.br/" />
+  <!-- Se tiver uma imagem pública de capa, preencha abaixo -->
+  <!-- <meta property="og:image" content="https://www.bigpushsustentabilidade.com.br/assets/og-cover.jpg" /> -->
+
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     :root{
-      --bg: #ffffff;
+      /* Paleta */
+      --bg: #f6f8f6;
       --surface: #ffffff;
-      --text: #1c2620;
-      --muted: #516156;
-      --moss: #2f4f3a;         /* verde musgo */
-      --moss-2: #3f6b4e;       /* musgo claro */
-      --border: rgba(47,79,58,.18);
-      --shadow: 0 8px 22px rgba(0,0,0,.06);
-      --radius: 14px;
+      --text: #142018;
+      --muted: #4c5d52;
+
+      --moss: #2f4f3a;
+      --moss-2: #3f6b4e;
+      --moss-3: #1f3a2a;
+
+      --border: rgba(31,58,42,.14);
+      --shadow: 0 12px 28px rgba(0,0,0,.08);
+      --shadow-soft: 0 10px 18px rgba(0,0,0,.06);
+
+      --radius: 16px;
+      --radius-2: 20px;
       --max: 1120px;
+
+      --ring: rgba(47,79,58,.25);
+
+      --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    *{ box-sizing: border-box; }
+    *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
+      font-family: var(--font);
+      background: radial-gradient(1100px 500px at 20% -10%, rgba(63,107,78,.14), transparent 60%),
+                  radial-gradient(900px 500px at 85% 0%, rgba(47,79,58,.10), transparent 55%),
+                  var(--bg);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 18px;
+    a{ color: inherit; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
+
+    /* Acessibilidade */
+    .skip-link{
+      position:absolute; left:-999px; top: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      z-index: 9999;
+    }
+    .skip-link:focus{ left: 18px; outline: none; box-shadow: 0 0 0 4px var(--ring), var(--shadow-soft); }
+
+    :focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--ring);
+      border-radius: 10px;
     }
 
-    /* Top bar */
+    /* Header */
     header.topbar{
-      background: linear-gradient(90deg, var(--moss), var(--moss-2));
-      color:#fff;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(47,79,58,.92), rgba(63,107,78,.92));
+      border-bottom: 1px solid rgba(255,255,255,.12);
     }
+
     .topbar .inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 14px;
-      padding: 14px 0;
+      padding: 12px 0;
     }
+
     .brand{
       display:flex;
       flex-direction:column;
       gap:2px;
+      color: #fff;
+      min-width: 220px;
     }
     .brand strong{
       font-size: 18px;
       letter-spacing: .2px;
+      line-height: 1.1;
     }
     .brand span{
-      font-size: 13px;
+      font-size: 12.8px;
       opacity:.92;
+      line-height: 1.2;
     }
+
     nav{
       display:flex;
       flex-wrap:wrap;
       gap: 10px;
       justify-content:flex-end;
+      align-items:center;
     }
     nav a{
       color:#fff;
       text-decoration:none;
-      font-weight:650;
+      font-weight: 750;
       font-size: 13px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: rgba(255,255,255,.10);
+      padding: 9px 11px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.10);
+      transition: transform .12s ease, background .12s ease;
+      white-space: nowrap;
     }
-    nav a:hover{ background: rgba(255,255,255,.18); }
+    nav a:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    nav a.active{ background: rgba(255,255,255,.22); }
 
     /* Hero */
     .hero{
-      border-bottom: 1px solid var(--border);
-      background: #fff;
-    }
-    .hero .inner{
       padding: 22px 0 18px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 16px;
-      align-items:center;
     }
-    .hero h1{
-      margin:0 0 8px;
-      font-size: 28px;
+    .hero .panel{
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2);
+      background:
+        radial-gradient(850px 340px at 10% 0%, rgba(63,107,78,.18), transparent 60%),
+        radial-gradient(700px 340px at 95% 5%, rgba(47,79,58,.16), transparent 55%),
+        linear-gradient(180deg, #ffffff, #fbfcfb);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero .inner{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:center;
+      padding: 22px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(47,79,58,.08);
+      border: 1px solid rgba(47,79,58,.14);
       color: var(--moss);
-      letter-spacing: -0.2px;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .2px;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius: 50%;
+      background: var(--moss);
+      box-shadow: 0 0 0 4px rgba(47,79,58,.14);
+    }
+
+    .hero h1{
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.15;
+      color: var(--moss-3);
+      letter-spacing: -0.3px;
     }
     .hero p{
-      margin:0;
+      margin: 0;
       color: var(--muted);
-      font-size: 15px;
-      max-width: 72ch;
+      font-size: 15.2px;
+      max-width: 76ch;
     }
+
     .cta{
       display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
+      flex-direction:column;
+      gap: 10px;
+      align-items: stretch;
+      justify-content:center;
     }
+
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
       text-decoration:none;
-      font-weight:750;
-      border-radius: 12px;
-      padding: 10px 14px;
+      font-weight: 850;
+      border-radius: 14px;
+      padding: 12px 14px;
       border: 1px solid var(--border);
       background:#fff;
       color: var(--moss);
+      box-shadow: var(--shadow-soft);
+      transition: transform .12s ease, filter .12s ease;
+      text-align:center;
+      user-select:none;
     }
     .btn.primary{
-      background: var(--moss);
+      background: linear-gradient(90deg, var(--moss), var(--moss-2));
       color:#fff;
       border-color: transparent;
     }
-    .btn:hover{ filter: brightness(1.02); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
 
-    /* Sections */
-    main{ padding: 18px 0 28px; }
+    /* Status cards (hero) */
+    .status{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 22px 20px;
+    }
+    .pill{
+      background: rgba(255,255,255,.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow-soft);
+      min-height: 70px;
+    }
+    .pill strong{
+      display:block;
+      font-size: 12px;
+      color: var(--moss);
+      letter-spacing: .2px;
+    }
+    .pill span{
+      display:block;
+      margin-top: 4px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    /* Main sections */
+    main{ padding: 10px 0 30px; }
+
     section{
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius: var(--radius-2);
+      box-shadow: var(--shadow-soft);
       padding: 18px;
       margin: 14px 0;
     }
-    section h2{
-      margin:0 0 10px;
-      font-size: 18px;
-      color: var(--moss);
+
+    section .head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
     }
+
+    section h2{
+      margin: 0;
+      font-size: 18.5px;
+      color: var(--moss-3);
+      letter-spacing: -0.1px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--moss);
+      background: rgba(47,79,58,.08);
+      border: 1px solid rgba(47,79,58,.14);
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
     .muted{ color: var(--muted); }
 
-    /* Simple grid */
+    /* Grid / Cards */
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 14px;
-      margin-top: 10px;
+      margin-top: 12px;
     }
+
     .card{
       border: 1px solid var(--border);
-      border-radius: 12px;
-      background:#fff;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #fff, #fbfcfb);
       padding: 14px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
     }
+
     .card h3{
-      margin:0 0 6px;
+      margin: 0 0 6px;
       font-size: 14px;
       color: var(--moss);
+      letter-spacing: .1px;
     }
-    .card p{ margin:0; color: var(--muted); font-size: 14px; }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-    /* Rich text (solos) */
+    /* Accordion para texto longo */
+    details.accordion{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fff;
+      padding: 12px 14px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.04);
+      margin-top: 12px;
+    }
+    details.accordion summary{
+      cursor:pointer;
+      font-weight: 900;
+      color: var(--moss-3);
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    details.accordion summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width: 10px; height: 10px;
+      border-right: 2px solid var(--moss);
+      border-bottom: 2px solid var(--moss);
+      transform: rotate(45deg);
+      transition: transform .14s ease;
+      margin-left: 6px;
+      flex: 0 0 auto;
+    }
+    details[open] .chev{ transform: rotate(225deg); }
+
+    .rt{
+      margin-top: 10px;
+    }
     .rt h3{
       margin: 14px 0 6px;
       font-size: 15px;
@@ -177,80 +372,116 @@
     }
     .rt li{ margin: 6px 0; }
 
-    /* Partners logos */
+    /* Partners */
     .partners{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
-      align-items:stretch;
       margin-top: 12px;
+      align-items: stretch;
     }
+
     .partner{
       border: 1px solid var(--border);
-      border-radius: 12px;
-      background:#fff;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fbfcfb);
       padding: 14px;
       display:flex;
       flex-direction:column;
       gap: 10px;
       align-items:center;
       justify-content:center;
-      min-height: 140px;
+      min-height: 160px;
       text-align:center;
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
+      transition: transform .12s ease;
     }
+    .partner:hover{ transform: translateY(-2px); }
+
     .partner img{
       width: 100%;
       max-width: 190px;
-      height: 74px;
+      height: 78px;
       object-fit: contain;
-      background:#fff; /* fundo branco p/ logos */
-      border-radius: 10px;
-      padding: 8px;
-      border: 1px solid rgba(0,0,0,.04);
+      background:#fff;
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(0,0,0,.05);
+      filter: grayscale(10%);
     }
     .partner .name{
-      font-weight: 800;
-      color: var(--moss);
+      font-weight: 900;
+      color: var(--moss-3);
       font-size: 13px;
       line-height: 1.25;
     }
     .partner .desc{
       color: var(--muted);
-      font-size: 12.5px;
+      font-size: 12.8px;
       line-height: 1.35;
       margin-top: -4px;
+      max-width: 40ch;
     }
 
     /* Footer */
     footer{
       border-top: 1px solid var(--border);
-      background:#fff;
+      background: #ffffff;
       color: var(--muted);
       padding: 18px 0 26px;
       font-size: 13px;
     }
-    footer a{ color: var(--moss); text-decoration:none; font-weight:650; }
+    footer a{ color: var(--moss); text-decoration:none; font-weight:800; }
     footer a:hover{ text-decoration: underline; }
+
+    /* Back to top */
+    .to-top{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--moss);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      text-decoration:none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+    .to-top.show{
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
 
     /* Responsive */
     @media (max-width: 860px){
       .hero .inner{ grid-template-columns: 1fr; }
-      .cta{ justify-content:flex-start; }
+      .cta{ flex-direction: row; flex-wrap: wrap; }
+      .btn{ flex: 1 1 180px; }
       nav{ justify-content:flex-start; }
+      .status{ grid-template-columns: 1fr; }
+      .brand{ min-width: auto; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Top bar -->
-  <header class="topbar">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Header -->
+  <header class="topbar" aria-label="Cabeçalho">
     <div class="wrap inner">
       <div class="brand">
         <strong>BigPush Sustentabilidade</strong>
         <span>Plataforma contínua de atualização técnico-científica</span>
       </div>
 
-      <nav>
+      <nav aria-label="Navegação principal">
         <a href="#sobre">Sobre</a>
         <a href="#resultados">Resultados</a>
         <a href="#galeria">Galeria</a>
@@ -262,27 +493,57 @@
 
   <!-- Hero -->
   <div class="hero">
-    <div class="wrap inner">
-      <div>
-        <h1>Monitoramento, evidências e comunicação técnica</h1>
-        <p>
-          Ambiente digital em fase inicial de implantação, já operacional, destinado a consolidar informações,
-          divulgar resultados e fortalecer a transparência e a governança técnica do projeto BigPush Sustentabilidade.
-        </p>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="#resultados">Ver Resultados</a>
-        <a class="btn" href="#parceiros">Ver Parceiros</a>
+    <div class="wrap">
+      <div class="panel">
+        <div class="inner">
+          <div>
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Ambiente operacional • evolução contínua</div>
+            <h1>Monitoramento, evidências e comunicação técnica</h1>
+            <p>
+              Ambiente digital destinado a consolidar informações, divulgar resultados e fortalecer a transparência
+              e a governança técnica do projeto BigPush Sustentabilidade, com atualização por ciclos e validação técnica.
+            </p>
+          </div>
+
+          <div class="cta" aria-label="Ações principais">
+            <a class="btn primary" href="#resultados">Ver Resultados</a>
+            <a class="btn" href="#parceiros">Ver Parceiros</a>
+          </div>
+        </div>
+
+        <!-- “Status” (útil para contexto institucional) -->
+        <div class="status" aria-label="Status do projeto">
+          <div class="pill">
+            <strong>Fase</strong>
+            <span>Implantação e consolidação inicial (plataforma e unidade experimental)</span>
+          </div>
+          <div class="pill">
+            <strong>Governança</strong>
+            <span>Organização por evidências, rastreabilidade e atualização incremental</span>
+          </div>
+          <div class="pill">
+            <strong>Transparência</strong>
+            <span>Resultados e registros disponíveis em ambiente público e versionável</span>
+          </div>
+          <div class="pill">
+            <strong>Unidade experimental</strong>
+            <span>Unidade de Referência Científica e Tecnológica em SIPA (IFFar/FW)</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <main>
+  <main id="conteudo" aria-label="Conteúdo principal">
     <div class="wrap">
 
       <!-- SOBRE -->
       <section id="sobre">
-        <h2>Sobre a plataforma</h2>
+        <div class="head">
+          <h2>Sobre a plataforma</h2>
+          <span class="tag">Escopo institucional</span>
+        </div>
+
         <p class="muted">
           Esta plataforma digital organiza e disponibiliza conteúdos técnicos e institucionais do projeto,
           apoiando a rastreabilidade de ações, a comunicação com o público-alvo e a transparência associada às entregas do convênio.
@@ -296,92 +557,87 @@
           </div>
           <div class="card">
             <h3>Governança</h3>
-            <p>Estrutura por seções técnicas, com atualização incremental e versionamento no repositório.</p>
+            <p>Estrutura por seções técnicas, com atualização incremental e possibilidade de versionamento.</p>
           </div>
           <div class="card">
             <h3>Transparência</h3>
-            <p>Disponibilização de resultados, registros e materiais para acompanhamento institucional e social.</p>
+            <p>Disponibilização de resultados e registros para acompanhamento institucional e social.</p>
           </div>
         </div>
       </section>
 
       <!-- RESULTADOS -->
       <section id="resultados">
-        <h2>Indicadores técnicos — Análise de solos (linha de base)</h2>
-
-        <div class="rt">
-          <p class="muted">
-            No exercício de 2024 foi realizada a primeira campanha oficial de amostragem e análise química de solos dos piquetes
-            experimentais vinculados à Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA).
-            Esta análise constitui o marco zero do monitoramento edáfico do projeto, estabelecendo a linha de base necessária para avaliação longitudinal
-            dos efeitos dos diferentes sistemas produtivos implantados. Ressalta-se que os sistemas encontram-se em fase inicial de consolidação,
-            razão pela qual os resultados apresentados refletem predominantemente as condições históricas prévias das áreas, e não ainda os efeitos estruturais
-            decorrentes dos tratamentos.
-          </p>
-
-          <h3>Caracterização Edáfica Geral da Unidade Experimental</h3>
-          <p class="muted">Os solos avaliados apresentam teor de argila médio a elevado, característica que confere:</p>
-          <ul>
-            <li>Boa capacidade de retenção de nutrientes;</li>
-            <li>Potencial expressivo de resposta à elevação da matéria orgânica;</li>
-            <li>Aptidão química para sistemas integrados de médio e longo prazo.</li>
-          </ul>
-          <p class="muted">
-            A capacidade de troca catiônica observada indica que os solos possuem estrutura química compatível com intensificação sustentável,
-            desde que submetidos a manejo adequado. Essa condição estrutural reforça a viabilidade técnica da implantação dos sistemas SIPA na área experimental.
-          </p>
-
-          <h3>Situação Atual da Fertilidade – Interpretação Técnica</h3>
-          <p class="muted">
-            A análise inicial demonstra a presença de acidez em parte dos piquetes, condição típica de solos da região sob uso agrícola contínuo.
-            Em determinadas áreas observa-se ocorrência de alumínio trocável, indicando necessidade de acompanhamento da saturação por bases ao longo do tempo.
-            Do ponto de vista técnico, trata-se de condição agronomicamente esperada, compatível com o histórico das áreas e plenamente manejável dentro do escopo do projeto.
-            A adoção de sistemas integrados tende a favorecer: incremento gradual da matéria orgânica; a maior ciclagem biológica de bases; estabilização progressiva do pH e
-            redução indireta da atividade do alumínio trocável. Contudo, tais efeitos dependem de acúmulo temporal de biomassa e ciclagem radicular.
-          </p>
-
-          <p class="muted">
-            A baixa disponibilidade inicial de fósforo constitui a principal limitação química observada entre os sistemas. Essa característica é comum em solos argilosos
-            intemperizados, nos quais ocorre forte adsorção do nutriente às frações minerais. Sob a perspectiva dos sistemas SIPA, espera-se que: a atividade biológica aumente
-            a eficiência de uso do fósforo; a ciclagem via componente pecuário contribua para redistribuição superficial; a maior diversidade radicular amplie o volume explorado;
-            o incremento da matéria orgânica reduza parcialmente a fixação do nutriente. Entretanto, o fósforo é elemento de resposta lenta, sendo tecnicamente esperado que sua
-            evolução seja observável apenas após sucessivos ciclos produtivos.
-          </p>
-
-          <p class="muted">
-            Os teores de potássio, cálcio e magnésio apresentam, de modo geral, condição satisfatória ou intermediária. Isso indica que os solos possuem base nutricional adequada
-            para sustentação dos sistemas produtivos implantados. Nos sistemas com componente pecuário, especialmente sob pastejo rotacionado, a tendência é de maior reciclagem de
-            potássio e redistribuição superficial de nutrientes, contribuindo para maior equilíbrio das relações entre bases ao longo do tempo.
-          </p>
-
-          <h3>Comparação Sistêmica e Potencial de Evolução</h3>
-          <p class="muted">
-            A comparação entre os sistemas demonstra que as áreas sob lavoura permanente apresentam maior homogeneidade química inicial, refletindo histórico de manejo convencional,
-            fazendo com que os sistemas integrados (iLF, iLP e iLPF) apresentam maior variabilidade inicial, característica esperada em áreas recém-estruturadas.
-            Já as áreas de pecuária permanente demonstram heterogeneidade espacial compatível com manejo prévio sob pastejo.
-          </p>
-
-          <p class="muted">
-            Importante registrar que a ausência de diferenças estruturais consolidadas entre sistemas é metodologicamente coerente, considerando que os tratamentos encontram-se em fase inicial;
-            ainda não houve número suficiente de ciclos agrícolas e pecuários e o componente arbóreo, nos sistemas que o integram, ainda está em fase de estabelecimento.
-            Sob a ótica científica, efeitos estruturais dos SIPA tendem a tornar-se mensuráveis após três a cinco anos de manejo contínuo, especialmente em indicadores como matéria orgânica;
-            saturação por bases; capacidade de troca catiônica efetiva; estabilidade do pH; eficiência no uso do fósforo.
-          </p>
-
-          <p class="muted">
-            A análise de solos realizada em 2024 cumpre integralmente o objetivo de estabelecer a condição inicial das unidades demonstrativas.
-            Os resultados indicam que os solos apresentam aptidão estrutural compatível com intensificação sustentável e a principal limitação química é a disponibilidade de fósforo.
-            A acidez observada é compatível com o histórico regional e existe elevado potencial de evolução sob manejo integrado.
-            Esse diagnóstico inicial permitirá, nos próximos anos, avaliar de forma comparativa e cientificamente fundamentada os impactos dos diferentes sistemas produtivos implantados no âmbito do projeto.
-            Assim, consolida-se a base técnica necessária para o monitoramento contínuo da qualidade química do solo e para a demonstração futura dos efeitos dos Sistemas Integrados de Produção Agropecuária na região.
-            A seguir são apresentadas interpretações sobre as características atuais do solo das unidades demonstrativas.
-          </p>
+        <div class="head">
+          <h2>Indicadores técnicos — Análise de solos (linha de base)</h2>
+          <span class="tag">Marco zero • 2024</span>
         </div>
+
+        <p class="muted">
+          No exercício de 2024 foi realizada a primeira campanha oficial de amostragem e análise química de solos dos piquetes
+          experimentais vinculados à Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA).
+          Esta análise constitui o marco zero do monitoramento edáfico do projeto, estabelecendo a linha de base necessária para avaliação longitudinal
+          dos efeitos dos diferentes sistemas produtivos implantados.
+        </p>
+
+        <details class="accordion" open>
+          <summary>
+            Leitura técnica consolidada (clique para expandir/recolher)
+            <span class="chev" aria-hidden="true"></span>
+          </summary>
+
+          <div class="rt">
+            <h3>Caracterização Edáfica Geral da Unidade Experimental</h3>
+            <p class="muted">Os solos avaliados apresentam teor de argila médio a elevado, característica que confere:</p>
+            <ul>
+              <li>Boa capacidade de retenção de nutrientes;</li>
+              <li>Potencial expressivo de resposta à elevação da matéria orgânica;</li>
+              <li>Aptidão química para sistemas integrados de médio e longo prazo.</li>
+            </ul>
+            <p class="muted">
+              A capacidade de troca catiônica observada indica que os solos possuem estrutura química compatível com intensificação sustentável,
+              desde que submetidos a manejo adequado. Essa condição reforça a viabilidade técnica da implantação dos sistemas SIPA na área experimental.
+            </p>
+
+            <h3>Situação Atual da Fertilidade – Interpretação Técnica</h3>
+            <p class="muted">
+              A análise inicial demonstra a presença de acidez em parte dos piquetes, condição típica de solos da região sob uso agrícola contínuo.
+              Em determinadas áreas observa-se ocorrência de alumínio trocável, indicando necessidade de acompanhamento da saturação por bases ao longo do tempo.
+              Do ponto de vista técnico, trata-se de condição agronomicamente esperada, compatível com o histórico das áreas e plenamente manejável dentro do escopo do projeto.
+            </p>
+
+            <p class="muted">
+              A baixa disponibilidade inicial de fósforo constitui a principal limitação química observada entre os sistemas. Essa característica é comum em solos argilosos
+              intemperizados, nos quais ocorre forte adsorção do nutriente às frações minerais. Sob a perspectiva dos sistemas SIPA, espera-se evolução em resposta lenta,
+              tecnicamente observável apenas após sucessivos ciclos produtivos.
+            </p>
+
+            <p class="muted">
+              Os teores de potássio, cálcio e magnésio apresentam, de modo geral, condição satisfatória ou intermediária, indicando base nutricional adequada
+              para sustentação dos sistemas produtivos implantados.
+            </p>
+
+            <h3>Comparação Sistêmica e Potencial de Evolução</h3>
+            <p class="muted">
+              A ausência de diferenças estruturais consolidadas entre sistemas é metodologicamente coerente, considerando que os tratamentos encontram-se em fase inicial,
+              com número ainda insuficiente de ciclos produtivos e componente arbóreo em estabelecimento nos sistemas que o integram.
+            </p>
+
+            <p class="muted">
+              A análise de solos realizada em 2024 cumpre o objetivo de estabelecer a condição inicial das unidades demonstrativas, consolidando a base técnica necessária
+              para monitoramento contínuo e demonstração futura dos efeitos dos Sistemas Integrados de Produção Agropecuária na região.
+            </p>
+          </div>
+        </details>
       </section>
 
       <!-- GALERIA -->
       <section id="galeria">
-        <h2>Galeria de fotos</h2>
+        <div class="head">
+          <h2>Galeria de fotos</h2>
+          <span class="tag">Atualização contínua</span>
+        </div>
+
         <p class="muted">
           As fotos do projeto são organizadas em uma pasta compartilhada no Google Drive. Novos registros são adicionados continuamente ao mesmo link,
           mantendo a galeria sempre atualizada.
@@ -396,7 +652,11 @@
 
       <!-- PARCEIROS -->
       <section id="parceiros">
-        <h2>Instituições parceiras</h2>
+        <div class="head">
+          <h2>Instituições parceiras</h2>
+          <span class="tag">Integração institucional</span>
+        </div>
+
         <p class="muted">
           O projeto BigPush Sustentabilidade é fruto da parceria institucional entre o Instituto Federal Farroupilha (IFFar),
           a Secretaria de Inovação, Ciência e Tecnologia do Estado do Rio Grande do Sul (SICT) e a COTRIFRED, com atuação integrada
@@ -426,14 +686,17 @@
 
       <!-- CONTATO -->
       <section id="contato">
-        <h2>Contato e localização</h2>
+        <div class="head">
+          <h2>Contato e localização</h2>
+          <span class="tag">Canal oficial</span>
+        </div>
 
         <div class="grid">
           <div class="card">
             <h3>Contato</h3>
             <p>
               E-mail:
-              <a href="mailto:rangel.pacheco@iffar.edu.br" style="color:var(--moss); font-weight:800; text-decoration:none;">
+              <a href="mailto:rangel.pacheco@iffar.edu.br" style="color:var(--moss); font-weight:900; text-decoration:none;">
                 rangel.pacheco@iffar.edu.br
               </a>
             </p>
@@ -451,17 +714,45 @@
     </div>
   </main>
 
-  <footer>
+  <footer aria-label="Rodapé">
     <div class="wrap">
-      <div>
-        © <span id="year"></span> BigPush Sustentabilidade • <a href="#contato">Contato</a>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
+        <div>© <span id="year"></span> BigPush Sustentabilidade</div>
+        <div><a href="#contato">Contato</a></div>
       </div>
     </div>
   </footer>
 
+  <a class="to-top" href="#conteudo" aria-label="Voltar ao topo">↑ Topo</a>
+
   <script>
+    // Ano
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Botão “Topo”
+    const toTop = document.querySelector(".to-top");
+    const toggleTop = () => {
+      if (window.scrollY > 450) toTop.classList.add("show");
+      else toTop.classList.remove("show");
+    };
+    window.addEventListener("scroll", toggleTop, { passive: true });
+    toggleTop();
+
+    // Menu ativo conforme seção visível
+    const links = Array.from(document.querySelectorAll("nav a"));
+    const sections = links
+      .map(a => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = "#" + entry.target.id;
+        links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.02 });
+
+    sections.forEach(s => obs.observe(s));
   </script>
 </body>
 </html>
-``
