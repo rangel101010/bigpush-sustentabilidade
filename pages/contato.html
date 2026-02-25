@@ -5,11 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Contato | BigPush Sustentabilidade</title>
-  <meta name="description" content="Contato institucional e localização da Unidade de Referência Científica e Tecnológica em SIPA." />
+  <meta name="description" content="Contato e localização da Unidade de Referência Científica e Tecnológica em SIPA do projeto BigPush Sustentabilidade." />
   <meta name="theme-color" content="#2f4f3a" />
 
   <link rel="stylesheet" href="../css/style.css" />
   <script defer src="../js/app.js"></script>
+
+  <style>
+    .btnLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      font-weight: 900;
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--moss);
+      box-shadow: var(--shadow-soft);
+      transition: transform .12s ease, filter .12s ease;
+      text-align:center;
+      user-select:none;
+      width: fit-content;
+    }
+    .btnLink.primary{
+      background: linear-gradient(90deg, var(--moss), var(--moss-2));
+      color:#fff;
+      border-color: transparent;
+    }
+    .btnLink:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+
+    .infoGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .small{
+      font-size: 12.8px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.45;
+    }
+    .kv{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .k{
+      font-weight: 900;
+      color: var(--moss-3);
+    }
+    .v{
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .divider{
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(31,58,42,.18);
+    }
+  </style>
 </head>
 
 <body>
@@ -27,9 +88,7 @@
       </div>
 
       <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu">
-        <span class="menuIcon" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
+        <span class="menuIcon" aria-hidden="true"><span></span><span></span><span></span></span>
         Menu
       </button>
 
@@ -66,77 +125,99 @@
   <main id="conteudo" aria-label="Conteúdo principal">
     <div class="wrap">
 
+      <!-- INTRO -->
       <section>
         <div class="head">
-          <h2>Contato e Localização</h2>
+          <h2>Contato e localização</h2>
           <span class="tag">Canal oficial</span>
         </div>
 
         <p class="muted">
-          Informações oficiais de contato e localização da Unidade de Referência Científica e Tecnológica em SIPA,
-          vinculada ao Instituto Federal Farroupilha – Campus Frederico Westphalen.
+          Esta página reúne os canais oficiais de contato e a localização institucional da Unidade de Referência Científica e Tecnológica
+          em Sistemas Integrados de Produção Agropecuária (SIPA), vinculada ao Instituto Federal Farroupilha – Campus Frederico Westphalen.
         </p>
-
-        <div class="grid" aria-label="Contato e localização">
-          <div class="card">
-            <h3>Contato</h3>
-            <p class="muted" style="margin-top:6px;">
-              E-mail institucional:
-              <a href="mailto:rangel.pacheco@iffar.edu.br" style="color:var(--moss); font-weight:900; text-decoration:none;">
-                rangel.pacheco@iffar.edu.br
-              </a>
-            </p>
-            <div class="row">
-              <span class="badge info">Coordenação técnica</span>
-              <span class="badge ok">Canal oficial</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Unidade experimental (endereço)</h3>
-            <p class="muted" style="margin-top:6px;">
-              <strong>BR 386</strong>, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
-            </p>
-
-            <div class="meta" aria-label="Metadados do endereço">
-              <div class="kv"><span class="k">Rodovia:</span><span class="v">BR 386</span></div>
-              <div class="kv"><span class="k">Referência:</span><span class="v">km 40</span></div>
-              <div class="kv"><span class="k">Localidade:</span><span class="v">Linha 7 de Setembro</span></div>
-              <div class="kv"><span class="k">Município/UF:</span><span class="v">Frederico Westphalen/RS</span></div>
-            </div>
-
-            <!-- Opcional: link para mapa (pode ajustar depois com coordenadas/endereço exato) -->
-            <a href="https://www.google.com/maps/search/?api=1&query=BR+386+km+40+Linha+7+de+Setembro+Frederico+Westphalen+RS"
-               target="_blank" rel="noopener">
-              Abrir no Google Maps
-            </a>
-          </div>
-        </div>
       </section>
 
+      <!-- CARDS -->
       <section>
         <div class="head">
-          <h2>Observação institucional</h2>
-          <span class="tag">Transparência</span>
+          <h2>Informações principais</h2>
+          <span class="tag">Institucional</span>
         </div>
 
-        <ul class="bullets">
-          <li>Este canal consolida informações públicas do projeto e orienta o contato com a coordenação técnica.</li>
-          <li>Documentos oficiais e evidências de execução encontram-se organizados na seção “Evidências”.</li>
-        </ul>
+        <div class="infoGrid" aria-label="Informações de contato">
+          <div class="card">
+            <h3>Contato</h3>
 
-        <div class="row">
-          <a class="btn" href="./evidencias.html">Acessar Evidências</a>
-          <a class="btn primary" href="../index.html">Voltar para Início</a>
+            <div class="kv">
+              <span class="k">E-mail:</span>
+              <span class="v">
+                <a href="mailto:rangel.pacheco@iffar.edu.br" style="color:var(--moss); font-weight:900; text-decoration:none;">
+                  rangel.pacheco@iffar.edu.br
+                </a>
+              </span>
+            </div>
+
+            <p class="small">
+              Preferencialmente utilize o e-mail para solicitações institucionais, visitas técnicas e demandas de informação pública.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Unidade de referência (localização)</h3>
+
+            <div class="kv">
+              <span class="k">Endereço:</span>
+              <span class="v">BR-386, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil</span>
+            </div>
+            <div class="kv">
+              <span class="k">CEP:</span>
+              <span class="v">98400-000</span>
+            </div>
+
+            <div class="divider">
+              <!-- LINK DO MAPA (pode ajustar depois) -->
+              <a class="btnLink primary"
+                 href="https://www.google.com/maps/search/?api=1&query=BR-386%20km%2040%20Linha%207%20de%20Setembro%20Frederico%20Westphalen%20RS"
+                 target="_blank" rel="noopener">
+                Abrir no Google Maps →
+              </a>
+
+              <p class="small">
+                Observação: o link acima utiliza busca por texto. Se você quiser, posso substituir por um link “fixo” (pin exato)
+                quando você me passar o link do Maps já pronto.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Vínculo institucional</h3>
+
+            <div class="kv">
+              <span class="k">Instituição:</span>
+              <span class="v">Instituto Federal Farroupilha – Campus Frederico Westphalen</span>
+            </div>
+            <div class="kv">
+              <span class="k">Projeto:</span>
+              <span class="v">BigPush Sustentabilidade</span>
+            </div>
+
+            <p class="small">
+              A Unidade opera como ambiente permanente de validação tecnológica, pesquisa aplicada, formação e difusão
+              de práticas orientadas à intensificação sustentável.
+            </p>
+          </div>
+
         </div>
       </section>
 
-      <footer aria-label="Rodapé" style="margin-top:18px;">
+      <!-- RODAPÉ -->
+      <footer style="margin-top:18px;">
         <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
           <div class="muted">© <span id="year"></span> BigPush Sustentabilidade</div>
           <div style="display:flex; gap:14px;">
             <a href="../index.html" style="color:var(--moss); font-weight:900; text-decoration:none;">Início</a>
-            <a href="./evidencias.html" style="color:var(--moss); font-weight:900; text-decoration:none;">Evidências</a>
+            <a href="./parceiros.html" style="color:var(--moss); font-weight:900; text-decoration:none;">Parceiros</a>
           </div>
         </div>
       </footer>
