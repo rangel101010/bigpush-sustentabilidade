@@ -90,3 +90,45 @@
 
   setupToc("[data-toc]", "[data-subsec]");
 })();
+/* =========================
+   Dropdown "Mais" (desktop)
+   ========================= */
+(function () {
+  const dd = document.querySelector("[data-dropdown]");
+  if (!dd) return;
+
+  const btn = dd.querySelector("[data-dropbtn]");
+  const menu = dd.querySelector("[data-dropmenu]");
+
+  function open() {
+    dd.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+  }
+  function close() {
+    dd.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+  }
+  function toggle() {
+    dd.classList.contains("open") ? close() : open();
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggle();
+  });
+
+  // Fecha ao clicar fora
+  document.addEventListener("click", (e) => {
+    if (!dd.contains(e.target)) close();
+  });
+
+  // Fecha com ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+
+  // Fecha ao clicar em um item
+  menu.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", close);
+  });
+})();
