@@ -34,6 +34,7 @@
       --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
       --headerH: 72px;
+      --tap: 44px; /* alvo mínimo de toque */
     }
 
     *{ box-sizing:border-box; }
@@ -46,7 +47,7 @@
         radial-gradient(900px 500px at 85% 0%, rgba(47,79,58,.10), transparent 55%),
         var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
     a{ color: inherit; }
     .wrap{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
@@ -83,7 +84,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 14px;
+      gap: 12px;
       padding: 10px 0;
     }
 
@@ -96,8 +97,8 @@
       color:#fff;
     }
     .brandbar img{
-      width: 52px;
-      height: 52px;
+      width: 50px;
+      height: 50px;
       object-fit: contain;
       border-radius: 12px;
       background: rgba(255,255,255,.92);
@@ -113,7 +114,7 @@
       line-height: 1.15;
     }
     .brand strong{ font-size: 17px; letter-spacing: .2px; }
-    .brand span{ font-size: 12.6px; opacity:.92; max-width: 48ch; }
+    .brand span{ font-size: 12.6px; opacity:.92; max-width: 52ch; }
 
     /* Menu desktop */
     nav#mainNav{
@@ -134,6 +135,9 @@
       border: 1px solid rgba(255,255,255,.10);
       transition: transform .12s ease, background .12s ease;
       white-space: nowrap;
+      min-height: var(--tap);
+      display:inline-flex;
+      align-items:center;
     }
     nav#mainNav a:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
     nav#mainNav a.active{ background: rgba(255,255,255,.22); }
@@ -151,6 +155,7 @@
       box-shadow: 0 10px 18px rgba(0,0,0,.14);
       align-items:center;
       gap: 10px;
+      min-height: var(--tap);
     }
     .menuIcon{
       width: 18px;
@@ -167,26 +172,89 @@
     .menuIcon span:nth-child(2){ top:5px; opacity:.92; }
     .menuIcon span:nth-child(3){ top:10px; opacity:.90; }
 
-    /* Painel do menu no mobile */
-    .mobileNav{
-      display:none;
-      border-top: 1px solid rgba(255,255,255,.12);
-      padding: 12px 0 14px;
+    /* ===== Mobile Drawer Nav (melhor usabilidade) ===== */
+    .overlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.42);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .16s ease;
+      z-index: 80;
     }
-    .mobileNav .gridLinks{
+    .overlay.open{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer{
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: min(420px, 92vw);
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(47,79,58,.98), rgba(31,58,42,.98));
+      border-left: 1px solid rgba(255,255,255,.14);
+      box-shadow: -18px 0 40px rgba(0,0,0,.22);
+      z-index: 90;
+      transition: right .18s ease;
+      display:flex;
+      flex-direction:column;
+    }
+    .drawer.open{ right: 0; }
+    .drawerHead{
+      padding: 14px 16px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .drawerHead strong{
+      color:#fff;
+      letter-spacing:.2px;
+      font-size: 14px;
+    }
+    .closeBtn{
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+      color:#fff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor:pointer;
+      min-height: var(--tap);
+    }
+    .drawerBody{
+      padding: 12px 14px 18px;
+      overflow:auto;
+    }
+    .drawerLinks{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px;
     }
-    .mobileNav a{
+    .drawerLinks a{
       color:#fff;
       text-decoration:none;
       font-weight: 860;
-      font-size: 13px;
-      padding: 10px 12px;
+      font-size: 14px;
+      padding: 12px 12px;
       border-radius: 14px;
       background: rgba(255,255,255,.12);
       border: 1px solid rgba(255,255,255,.10);
+      min-height: var(--tap);
+      display:flex;
+      align-items:center;
+    }
+    .drawerNote{
+      margin-top: 12px;
+      color: rgba(255,255,255,.88);
+      font-size: 12.8px;
+      line-height: 1.35;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      padding: 10px 12px;
+      border-radius: 14px;
     }
 
     /* Hero */
@@ -199,7 +267,7 @@
       background: #fff;
     }
 
-    /* Slider (IMAGEM INTEIRA via object-fit: contain) */
+    /* Slider (imagem inteira) */
     .slider{
       position: relative;
       width: 100%;
@@ -223,17 +291,14 @@
       padding: 10px;
     }
     .slide.active{ opacity:1; }
-
     .slide img{
       width: 100%;
       height: 100%;
-      object-fit: contain;  /* chave: não corta */
+      object-fit: contain;
       object-position: center;
       border-radius: 12px;
       filter: saturate(1.02) contrast(1.01);
     }
-
-    /* overlay leve p/ legibilidade */
     .slider::after{
       content:"";
       position:absolute;
@@ -310,6 +375,8 @@
       cursor:pointer;
       box-shadow: 0 12px 20px rgba(0,0,0,.18);
       transition: transform .12s ease, background .12s ease;
+      min-height: var(--tap);
+      min-width: var(--tap);
     }
     .sbtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
     .dots{
@@ -323,7 +390,7 @@
       box-shadow: 0 12px 20px rgba(0,0,0,.18);
     }
     .dotbtn{
-      width:10px; height:10px;
+      width:12px; height:12px;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,.55);
       background: rgba(255,255,255,.20);
@@ -380,6 +447,7 @@
       transition: transform .12s ease, filter .12s ease;
       text-align:center;
       user-select:none;
+      min-height: var(--tap);
     }
     .btn.primary{
       background: linear-gradient(90deg, var(--moss), var(--moss-2));
@@ -399,9 +467,9 @@
       background: rgba(255,255,255,.92);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 10px 12px;
+      padding: 12px 12px;
       box-shadow: var(--shadow-soft);
-      min-height: 72px;
+      min-height: 78px;
     }
     .pill strong{
       display:block;
@@ -412,7 +480,7 @@
     .pill span{
       display:block;
       margin-top: 4px;
-      font-size: 13.5px;
+      font-size: 13.6px;
       color: var(--muted);
       line-height: 1.25;
     }
@@ -486,6 +554,8 @@
       text-decoration:none;
       font-weight: 900;
       color: var(--moss);
+      min-height: var(--tap);
+      align-items:center;
     }
     .card a:hover{ text-decoration: underline; }
 
@@ -500,7 +570,7 @@
       display:inline-flex;
       align-items:center;
       gap: 6px;
-      padding: 6px 10px;
+      padding: 7px 10px;
       border-radius: 999px;
       font-size: 12px;
       font-weight: 900;
@@ -524,7 +594,7 @@
       color: var(--moss-3);
     }
 
-    /* TOC (sumário com âncoras) */
+    /* TOC */
     .toc{
       border: 1px solid var(--border);
       background: linear-gradient(180deg, #fff, #fbfcfb);
@@ -550,11 +620,14 @@
       font-weight: 900;
       font-size: 12.5px;
       color: var(--moss);
-      padding: 8px 10px;
+      padding: 9px 10px;
       border-radius: 999px;
       border: 1px solid rgba(47,79,58,.18);
       background: rgba(47,79,58,.06);
       transition: transform .12s ease, background .12s ease;
+      min-height: var(--tap);
+      display:inline-flex;
+      align-items:center;
     }
     .toc a:hover{ transform: translateY(-1px); background: rgba(47,79,58,.10); }
     .toc a.active{
@@ -577,7 +650,7 @@
       padding-left: 18px;
       color: var(--muted);
     }
-    .bullets li{ margin: 7px 0; }
+    .bullets li{ margin: 8px 0; }
 
     /* Evidências com metadados */
     .meta{
@@ -608,50 +681,6 @@
       overflow:hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    /* Changelog */
-    .changelog{
-      margin-top: 12px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: linear-gradient(180deg, #fff, #fbfcfb);
-      box-shadow: 0 10px 18px rgba(0,0,0,.04);
-      overflow: hidden;
-    }
-    .chgRow{
-      padding: 12px 14px;
-      border-top: 1px dashed rgba(31,58,42,.16);
-    }
-    .chgRow:first-child{ border-top: 0; }
-    .chgTop{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom: 6px;
-    }
-    .chgDate{
-      font-weight: 900;
-      color: var(--moss-3);
-      font-size: 13px;
-    }
-    .chgVer{
-      font-weight: 900;
-      color: var(--moss);
-      font-size: 12px;
-      background: rgba(47,79,58,.08);
-      border: 1px solid rgba(47,79,58,.16);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-    .chgRow ul{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 14px;
     }
 
     /* Partners */
@@ -732,6 +761,9 @@
       transform: translateY(6px);
       transition: opacity .16s ease, transform .16s ease;
       z-index: 70;
+      min-height: var(--tap);
+      display:inline-flex;
+      align-items:center;
     }
     .to-top.show{
       opacity: 1;
@@ -739,37 +771,38 @@
       transform: translateY(0);
     }
 
-    /* Reduz movimento (acessibilidade) */
+    /* Reduz movimento */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior: auto; }
       .slide{ transition: none; }
+      .drawer, .overlay{ transition:none; }
     }
 
-    /* ======= RESPONSIVIDADE (mobile-friendly) ======= */
+    /* ======= RESPONSIVIDADE ======= */
     @media (max-width: 980px){
-      nav#mainNav{ display:none; }     /* some o menu desktop */
-      .menuBtn{ display:inline-flex; } /* aparece hambúrguer */
-      .mobileNav.open{ display:block; }
+      nav#mainNav{ display:none; }
+      .menuBtn{ display:inline-flex; }
       .brandbar{ min-width: 0; }
     }
 
     @media (max-width: 860px){
+      :root{ --headerH: 68px; }
       .slider{ height: 280px; }
       .slider-title h1{ font-size: 22px; }
       .slider-title p{ font-size: 14px; }
       .hero .inner{ grid-template-columns: 1fr; }
-      .cta{ flex-direction: row; flex-wrap: wrap; }
-      .btn{ flex: 1 1 170px; }
+      .cta{ flex-direction: column; }
+      .btn{ width: 100%; }
       .status{ grid-template-columns: 1fr; }
-      .meta{ grid-template-columns: 1fr; } /* metadados em uma coluna */
-      .mobileNav .gridLinks{ grid-template-columns: 1fr; }
+      .meta{ grid-template-columns: 1fr; }
+      section{ padding: 16px; }
     }
 
     @media (max-width: 420px){
       .brand strong{ font-size: 16px; }
       .brand span{ font-size: 12.2px; }
       .slider{ height: 250px; }
-      .slider-controls{ display:none; } /* no muito pequeno, some controles (auto-play e swipe/tecla ainda ok) */
+      .slider-controls{ display:none; }
     }
   </style>
 </head>
@@ -788,7 +821,7 @@
       </div>
 
       <!-- Botão mobile -->
-      <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu">
+      <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawerNav" aria-label="Abrir menu">
         <span class="menuIcon" aria-hidden="true">
           <span></span><span></span><span></span>
         </span>
@@ -809,10 +842,18 @@
         <a href="#contato">Contato</a>
       </nav>
     </div>
+  </header>
 
-    <!-- Menu mobile -->
-    <div class="wrap mobileNav" id="mobileNav" aria-label="Menu mobile">
-      <div class="gridLinks">
+  <!-- Overlay + Drawer (mobile) -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <aside class="drawer" id="drawerNav" aria-label="Menu mobile">
+    <div class="drawerHead">
+      <strong>Navegação</strong>
+      <button class="closeBtn" id="closeBtn" type="button" aria-label="Fechar menu">Fechar</button>
+    </div>
+    <div class="drawerBody">
+      <div class="drawerLinks">
         <a href="#apresentacao">Apresentação</a>
         <a href="#metodologia">Metodologia</a>
         <a href="#evidencias">Evidências</a>
@@ -824,8 +865,11 @@
         <a href="#parceiros">Parceiros</a>
         <a href="#contato">Contato</a>
       </div>
+      <div class="drawerNote">
+        Dica: no celular, use este menu para “pular” entre as seções e evitar rolagens longas.
+      </div>
     </div>
-  </header>
+  </aside>
 
   <!-- HERO / APRESENTAÇÃO -->
   <div class="hero" id="apresentacao">
@@ -835,12 +879,10 @@
         <!-- SLIDER -->
         <div class="slider" id="heroSlider" aria-label="Carrossel de imagens do projeto">
           <div class="slides">
-            <!-- 1ª imagem: carrega imediato -->
             <div class="slide active" aria-label="SIPA — módulo com ovinos">
               <img src="assets/sipa-ovinos.jpeg" alt="SIPA — módulo com ovinos" decoding="async" fetchpriority="high" />
             </div>
 
-            <!-- demais: lazy -->
             <div class="slide" aria-label="SIPA — visão aérea da unidade">
               <img src="assets/sipa-ipf.jpeg" alt="SIPA — visão aérea da unidade" loading="lazy" decoding="async" />
             </div>
@@ -1005,7 +1047,6 @@
           <h3>Governança técnica e rastreabilidade</h3>
           <ul class="bullets">
             <li>Organização por seções técnicas e documentação de referência em “Evidências”.</li>
-            <li>Atualizações realizadas por ciclos, com registro no “Histórico de Atualizações”.</li>
             <li>Estrutura voltada à transparência institucional e acompanhamento público das entregas.</li>
           </ul>
         </div>
@@ -1320,33 +1361,6 @@
         </a>
       </section>
 
-      <!-- CHANGELOG -->
-      <section id="atualizacoes">
-        <div class="head">
-          <h2>Histórico de atualizações (changelog)</h2>
-          <span class="tag">Rastreabilidade</span>
-        </div>
-
-        <p class="muted">
-          Registro sintético das alterações relevantes da plataforma para fins de governança técnica, transparência e auditoria.
-        </p>
-
-        <div class="changelog" aria-label="Changelog">
-          <div class="chgRow">
-            <div class="chgTop">
-              <span class="chgDate">25/02/2026</span>
-              <span class="chgVer">v1.0.0</span>
-            </div>
-            <ul>
-              <li>Reestruturação da home com carrossel (fotos inteiras) e apresentação técnico-institucional.</li>
-              <li>Inclusão de Metodologia/Protocolos, Evidências com metadados e sumários com âncoras interativas.</li>
-              <li>Layout mobile-friendly (menu hambúrguer, grids responsivos, tipografia adaptada).</li>
-              <li>Otimização perceptível: preload da 1ª imagem do carrossel + lazy nas demais.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <!-- PARCEIROS -->
       <section id="parceiros">
         <div class="head">
@@ -1396,13 +1410,20 @@
                 rangel.pacheco@iffar.edu.br
               </a>
             </p>
+            <p class="muted" style="margin-top:8px;">
+              Para facilitar no celular, você pode tocar no e-mail e enviar mensagem diretamente.
+            </p>
           </div>
 
           <div class="card">
             <h3>Unidade experimental</h3>
             <p class="muted">
-              BR 368, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
+              Linha 7 de Setembro, s/n, km 40, BR 386, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
             </p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Linha%207%20de%20Setembro%2C%20km%2040%2C%20BR%20386%2C%20Frederico%20Westphalen%20RS"
+              target="_blank" rel="noopener"
+            >Abrir no Google Maps</a>
           </div>
         </div>
       </section>
@@ -1415,7 +1436,6 @@
       <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
         <div>© <span id="year"></span> BigPush Sustentabilidade</div>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="#atualizacoes">Atualizações</a>
           <a href="#contato">Contato</a>
         </div>
       </div>
@@ -1437,29 +1457,43 @@
     window.addEventListener("scroll", toggleTop, { passive: true });
     toggleTop();
 
-    // Menu mobile (hambúrguer)
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileNav = document.getElementById("mobileNav");
+    // Drawer mobile
+    const menuBtn  = document.getElementById("menuBtn");
+    const drawer   = document.getElementById("drawerNav");
+    const overlay  = document.getElementById("overlay");
+    const closeBtn = document.getElementById("closeBtn");
 
-    function closeMobileNav(){
-      mobileNav.classList.remove("open");
+    function openDrawer(){
+      drawer.classList.add("open");
+      overlay.classList.add("open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeDrawer(){
+      drawer.classList.remove("open");
+      overlay.classList.remove("open");
       menuBtn.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
     }
-    function toggleMobileNav(){
-      const open = mobileNav.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    function toggleDrawer(){
+      const isOpen = drawer.classList.contains("open");
+      if (isOpen) closeDrawer();
+      else openDrawer();
     }
-    menuBtn.addEventListener("click", toggleMobileNav);
 
-    // Fecha menu ao clicar em um link
-    mobileNav.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", closeMobileNav);
+    menuBtn.addEventListener("click", toggleDrawer);
+    closeBtn.addEventListener("click", closeDrawer);
+    overlay.addEventListener("click", closeDrawer);
+
+    // Fecha drawer ao clicar em link
+    drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", closeDrawer));
+
+    // Fecha drawer com ESC
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && drawer.classList.contains("open")) closeDrawer();
     });
-
-    // Fecha menu ao rolar (mobile)
-    window.addEventListener("scroll", () => {
-      if (mobileNav.classList.contains("open")) closeMobileNav();
-    }, { passive: true });
 
     // Menu ativo (desktop)
     const navLinks = Array.from(document.querySelectorAll("#mainNav a"));
@@ -1484,7 +1518,6 @@
     let idx = 0;
     const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // cria dots
     slides.forEach((_, i) => {
       const b = document.createElement("button");
       b.className = "dotbtn" + (i === 0 ? " active" : "");
@@ -1509,7 +1542,7 @@
     nextBtn?.addEventListener("click", next);
     prevBtn?.addEventListener("click", prev);
 
-    // auto-play (pausa ao interagir)
+    // auto-play
     let timer = null;
     function start(){
       if (prefersReduced) return;
@@ -1528,47 +1561,26 @@
     slider.addEventListener("focusout", start);
     start();
 
-    // TOC ativo (Resultados)
-    const tocLinks = Array.from(document.querySelectorAll("[data-toc]"));
-    const tocSecs  = Array.from(document.querySelectorAll("[data-subsec]"));
-    if (tocLinks.length && tocSecs.length){
-      const tocObs = new IntersectionObserver((entries) => {
+    // TOCs
+    function setupToc(linkSel, secSel){
+      const links = Array.from(document.querySelectorAll(linkSel));
+      const secs  = Array.from(document.querySelectorAll(secSel));
+      if (!links.length || !secs.length) return;
+
+      const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           const id = "#" + entry.target.id;
-          tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+          links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
         });
       }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
-      tocSecs.forEach(s => tocObs.observe(s));
+
+      secs.forEach(s => obs.observe(s));
     }
 
-    // TOC ativo (Participação)
-    const tocLinksP = Array.from(document.querySelectorAll("[data-toc-part]"));
-    const tocSecsP  = Array.from(document.querySelectorAll("[data-subsec-part]"));
-    if (tocLinksP.length && tocSecsP.length){
-      const tocObsP = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = "#" + entry.target.id;
-          tocLinksP.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
-        });
-      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
-      tocSecsP.forEach(s => tocObsP.observe(s));
-    }
-
-    // TOC ativo (Metodologia)
-    const tocLinksM = Array.from(document.querySelectorAll("[data-toc-met]"));
-    const tocSecsM  = Array.from(document.querySelectorAll("[data-subsec-met]"));
-    if (tocLinksM.length && tocSecsM.length){
-      const tocObsM = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = "#" + entry.target.id;
-          tocLinksM.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
-        });
-      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
-      tocSecsM.forEach(s => tocObsM.observe(s));
-    }
+    setupToc("[data-toc]", "[data-subsec]");
+    setupToc("[data-toc-part]", "[data-subsec-part]");
+    setupToc("[data-toc-met]", "[data-subsec-met]");
   </script>
 </body>
 </html>
