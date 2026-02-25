@@ -8,6 +8,9 @@
   <meta name="description" content="Plataforma BigPush Sustentabilidade – evidências, governança técnica e monitoramento de módulos SIPA." />
   <meta name="theme-color" content="#2f4f3a" />
 
+  <!-- Preload da 1ª imagem do carrossel (melhora abertura) -->
+  <link rel="preload" as="image" href="assets/sipa-ovinos.jpeg" />
+
   <style>
     :root{
       --bg: #f6f8f6;
@@ -29,6 +32,8 @@
 
       --ring: rgba(47,79,58,.25);
       --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      --headerH: 72px;
     }
 
     *{ box-sizing:border-box; }
@@ -43,7 +48,6 @@
       color: var(--text);
       line-height: 1.6;
     }
-
     a{ color: inherit; }
     .wrap{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
     .muted{ color: var(--muted); }
@@ -69,12 +73,13 @@
     header.topbar{
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 60;
       backdrop-filter: blur(10px);
       background: linear-gradient(90deg, rgba(47,79,58,.92), rgba(63,107,78,.92));
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
     .topbar .inner{
+      min-height: var(--headerH);
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -82,23 +87,24 @@
       padding: 10px 0;
     }
 
-    /* Logo + brand */
+    /* Marca */
     .brandbar{
       display:flex;
       align-items:center;
       gap: 12px;
-      min-width: 320px;
+      min-width: 280px;
       color:#fff;
     }
     .brandbar img{
-      width: 54px;
-      height: 54px;
+      width: 52px;
+      height: 52px;
       object-fit: contain;
       border-radius: 12px;
       background: rgba(255,255,255,.92);
       padding: 6px;
       border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 10px 18px rgba(0,0,0,.12);
+      flex: 0 0 auto;
     }
     .brand{
       display:flex;
@@ -107,16 +113,17 @@
       line-height: 1.15;
     }
     .brand strong{ font-size: 17px; letter-spacing: .2px; }
-    .brand span{ font-size: 12.6px; opacity:.92; }
+    .brand span{ font-size: 12.6px; opacity:.92; max-width: 48ch; }
 
-    nav{
+    /* Menu desktop */
+    nav#mainNav{
       display:flex;
       flex-wrap:wrap;
       gap: 10px;
       justify-content:flex-end;
       align-items:center;
     }
-    nav a{
+    nav#mainNav a{
       color:#fff;
       text-decoration:none;
       font-weight: 780;
@@ -128,8 +135,59 @@
       transition: transform .12s ease, background .12s ease;
       white-space: nowrap;
     }
-    nav a:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
-    nav a.active{ background: rgba(255,255,255,.22); }
+    nav#mainNav a:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    nav#mainNav a.active{ background: rgba(255,255,255,.22); }
+
+    /* Botão hamburguer (mobile) */
+    .menuBtn{
+      display:none;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color:#fff;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(0,0,0,.14);
+      align-items:center;
+      gap: 10px;
+    }
+    .menuIcon{
+      width: 18px;
+      height: 12px;
+      position: relative;
+      display:inline-block;
+    }
+    .menuIcon span{
+      position:absolute; left:0; right:0;
+      height: 2px; border-radius: 999px;
+      background: rgba(255,255,255,.96);
+    }
+    .menuIcon span:nth-child(1){ top:0; }
+    .menuIcon span:nth-child(2){ top:5px; opacity:.92; }
+    .menuIcon span:nth-child(3){ top:10px; opacity:.90; }
+
+    /* Painel do menu no mobile */
+    .mobileNav{
+      display:none;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 12px 0 14px;
+    }
+    .mobileNav .gridLinks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mobileNav a{
+      color:#fff;
+      text-decoration:none;
+      font-weight: 860;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.10);
+    }
 
     /* Hero */
     .hero{ padding: 18px 0 18px; }
@@ -141,7 +199,7 @@
       background: #fff;
     }
 
-    /* Slider — FOTO INTEIRA (contain) */
+    /* Slider (IMAGEM INTEIRA via object-fit: contain) */
     .slider{
       position: relative;
       width: 100%;
@@ -152,33 +210,35 @@
         radial-gradient(750px 300px at 90% 10%, rgba(47,79,58,.14), transparent 55%),
         #0e1511;
     }
-    .slides{
-      position:absolute;
-      inset:0;
-    }
+    .slides{ position:absolute; inset:0; }
+
     .slide{
       position:absolute;
       inset:0;
       opacity:0;
       transition: opacity .9s ease;
-
-      /* chave: mostrar a foto inteira */
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-
-      /* melhora leve de contraste/cores sem “estourar” */
-      filter: saturate(1.02) contrast(1.01);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px;
     }
     .slide.active{ opacity:1; }
+
+    .slide img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;  /* chave: não corta */
+      object-position: center;
+      border-radius: 12px;
+      filter: saturate(1.02) contrast(1.01);
+    }
 
     /* overlay leve p/ legibilidade */
     .slider::after{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.44));
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.44));
       pointer-events:none;
     }
 
@@ -190,13 +250,12 @@
       justify-content:space-between;
       padding: 14px;
       z-index: 2;
-      pointer-events:none;
     }
 
     .slider-title{
-      pointer-events:none;
       color:#fff;
-      max-width: 82ch;
+      max-width: 86ch;
+      pointer-events:none;
     }
     .slider-title .kicker{
       display:inline-flex;
@@ -253,7 +312,6 @@
       transition: transform .12s ease, background .12s ease;
     }
     .sbtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
-
     .dots{
       display:flex;
       gap: 8px;
@@ -295,7 +353,7 @@
       margin: 0 0 10px;
       font-size: 15.2px;
       color: var(--muted);
-      max-width: 82ch;
+      max-width: 90ch;
     }
     .hero .text p:last-child{ margin-bottom: 0; }
 
@@ -343,7 +401,7 @@
       border-radius: 14px;
       padding: 10px 12px;
       box-shadow: var(--shadow-soft);
-      min-height: 70px;
+      min-height: 72px;
     }
     .pill strong{
       display:block;
@@ -430,32 +488,6 @@
       color: var(--moss);
     }
     .card a:hover{ text-decoration: underline; }
-
-    /* Evidence panel */
-    .evidence{ margin-top: 12px; }
-    .ev-title{
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--moss-3);
-      margin: 0 0 8px;
-      letter-spacing: .1px;
-    }
-    .evidence .card h3{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-    }
-    .ev-type{
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--moss);
-      background: rgba(47,79,58,.08);
-      border: 1px solid rgba(47,79,58,.18);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
 
     /* Badges */
     .row{
@@ -547,6 +579,81 @@
     }
     .bullets li{ margin: 7px 0; }
 
+    /* Evidências com metadados */
+    .meta{
+      margin-top: 10px;
+      border: 1px solid rgba(31,58,42,.10);
+      background: rgba(47,79,58,.04);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 12px;
+    }
+    .meta .kv{
+      display:flex;
+      gap: 8px;
+      align-items:baseline;
+      min-width: 0;
+    }
+    .meta .k{
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--moss-3);
+      white-space: nowrap;
+    }
+    .meta .v{
+      font-size: 12.8px;
+      color: var(--muted);
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Changelog */
+    .changelog{
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #fff, #fbfcfb);
+      box-shadow: 0 10px 18px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+    .chgRow{
+      padding: 12px 14px;
+      border-top: 1px dashed rgba(31,58,42,.16);
+    }
+    .chgRow:first-child{ border-top: 0; }
+    .chgTop{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 6px;
+    }
+    .chgDate{
+      font-weight: 900;
+      color: var(--moss-3);
+      font-size: 13px;
+    }
+    .chgVer{
+      font-weight: 900;
+      color: var(--moss);
+      font-size: 12px;
+      background: rgba(47,79,58,.08);
+      border: 1px solid rgba(47,79,58,.16);
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .chgRow ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     /* Partners */
     .partners{
       display:grid;
@@ -624,7 +731,7 @@
       pointer-events: none;
       transform: translateY(6px);
       transition: opacity .16s ease, transform .16s ease;
-      z-index: 60;
+      z-index: 70;
     }
     .to-top.show{
       opacity: 1;
@@ -638,17 +745,31 @@
       .slide{ transition: none; }
     }
 
-    @media (max-width: 960px){
-      nav{ justify-content:flex-start; }
-      .brandbar{ min-width: auto; }
+    /* ======= RESPONSIVIDADE (mobile-friendly) ======= */
+    @media (max-width: 980px){
+      nav#mainNav{ display:none; }     /* some o menu desktop */
+      .menuBtn{ display:inline-flex; } /* aparece hambúrguer */
+      .mobileNav.open{ display:block; }
+      .brandbar{ min-width: 0; }
     }
+
     @media (max-width: 860px){
+      .slider{ height: 280px; }
+      .slider-title h1{ font-size: 22px; }
+      .slider-title p{ font-size: 14px; }
       .hero .inner{ grid-template-columns: 1fr; }
       .cta{ flex-direction: row; flex-wrap: wrap; }
-      .btn{ flex: 1 1 180px; }
+      .btn{ flex: 1 1 170px; }
       .status{ grid-template-columns: 1fr; }
-      .slider{ height: 290px; }
-      .slider-title h1{ font-size: 24px; }
+      .meta{ grid-template-columns: 1fr; } /* metadados em uma coluna */
+      .mobileNav .gridLinks{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px){
+      .brand strong{ font-size: 16px; }
+      .brand span{ font-size: 12.2px; }
+      .slider{ height: 250px; }
+      .slider-controls{ display:none; } /* no muito pequeno, some controles (auto-play e swipe/tecla ainda ok) */
     }
   </style>
 </head>
@@ -658,17 +779,26 @@
 
   <header class="topbar" aria-label="Cabeçalho">
     <div class="wrap inner">
-
       <div class="brandbar">
         <img src="assets/logo-bigpush.png" alt="Símbolo BigPush" />
         <div class="brand">
           <strong>BigPush Sustentabilidade</strong>
-          <span>Evidências e governança técnica em módulos SIPA</span>
+          <span>Evidências e governança técnica em módulos SIPA (iLP • iLF • iLPF • iPF)</span>
         </div>
       </div>
 
-      <nav aria-label="Navegação principal">
+      <!-- Botão mobile -->
+      <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu">
+        <span class="menuIcon" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        Menu
+      </button>
+
+      <!-- Menu desktop -->
+      <nav id="mainNav" aria-label="Navegação principal">
         <a href="#apresentacao">Apresentação</a>
+        <a href="#metodologia">Metodologia</a>
         <a href="#evidencias">Evidências</a>
         <a href="#modulos">Módulos SIPA</a>
         <a href="#resultados">Resultados</a>
@@ -678,6 +808,22 @@
         <a href="#parceiros">Parceiros</a>
         <a href="#contato">Contato</a>
       </nav>
+    </div>
+
+    <!-- Menu mobile -->
+    <div class="wrap mobileNav" id="mobileNav" aria-label="Menu mobile">
+      <div class="gridLinks">
+        <a href="#apresentacao">Apresentação</a>
+        <a href="#metodologia">Metodologia</a>
+        <a href="#evidencias">Evidências</a>
+        <a href="#modulos">Módulos SIPA</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#participacao">Participação</a>
+        <a href="#divulgacao">Divulgação</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#contato">Contato</a>
+      </div>
     </div>
   </header>
 
@@ -689,10 +835,23 @@
         <!-- SLIDER -->
         <div class="slider" id="heroSlider" aria-label="Carrossel de imagens do projeto">
           <div class="slides">
-            <div class="slide active" style="background-image:url('assets/sipa-ovinos.jpeg');" role="img" aria-label="SIPA — módulo com ovinos"></div>
-            <div class="slide" style="background-image:url('assets/sipa-ipf.jpeg');" role="img" aria-label="SIPA — visão aérea da unidade"></div>
-            <div class="slide" style="background-image:url('assets/sipa-bovinos.jpeg');" role="img" aria-label="SIPA — módulo com bovinos"></div>
-            <div class="slide" style="background-image:url('assets/sipa-ilpf.jpeg');" role="img" aria-label="SIPA — módulo ILPF"></div>
+            <!-- 1ª imagem: carrega imediato -->
+            <div class="slide active" aria-label="SIPA — módulo com ovinos">
+              <img src="assets/sipa-ovinos.jpeg" alt="SIPA — módulo com ovinos" decoding="async" fetchpriority="high" />
+            </div>
+
+            <!-- demais: lazy -->
+            <div class="slide" aria-label="SIPA — visão aérea da unidade">
+              <img src="assets/sipa-ipf.jpeg" alt="SIPA — visão aérea da unidade" loading="lazy" decoding="async" />
+            </div>
+
+            <div class="slide" aria-label="SIPA — módulo com bovinos">
+              <img src="assets/sipa-bovinos.jpeg" alt="SIPA — módulo com bovinos" loading="lazy" decoding="async" />
+            </div>
+
+            <div class="slide" aria-label="SIPA — módulo ILPF">
+              <img src="assets/sipa-ilpf.jpeg" alt="SIPA — módulo ILPF" loading="lazy" decoding="async" />
+            </div>
           </div>
 
           <div class="slider-ui">
@@ -737,7 +896,7 @@
 
           <div class="cta" aria-label="Ações principais">
             <a class="btn primary" href="#evidencias">Painel de Evidências</a>
-            <a class="btn" href="#participacao">Como Participar</a>
+            <a class="btn" href="#metodologia">Metodologia e Protocolos</a>
           </div>
         </div>
 
@@ -767,44 +926,165 @@
   <main id="conteudo" aria-label="Conteúdo principal">
     <div class="wrap">
 
+      <!-- METODOLOGIA E PROTOCOLOS -->
+      <section id="metodologia">
+        <div class="head">
+          <h2>Metodologia e Protocolos</h2>
+          <span class="tag">Reprodutibilidade e leitura por ciclos</span>
+        </div>
+
+        <p class="muted">
+          Esta seção descreve a lógica de avaliação do projeto por ciclos e o conjunto de indicadores técnicos monitorados na Unidade de Referência.
+          Em função do estágio de implantação, os registros atuais priorizam linha de base e evidências de consolidação operacional, com ampliação incremental de indicadores.
+        </p>
+
+        <div class="toc" aria-label="Sumário de metodologia">
+          <strong>Sumário (clique para navegar)</strong>
+          <div class="links">
+            <a href="#met-ciclos" data-toc-met>Ciclos</a>
+            <a href="#met-indicadores" data-toc-met>Indicadores</a>
+            <a href="#met-governanca" data-toc-met>Governança</a>
+          </div>
+        </div>
+
+        <div class="subsec" id="met-ciclos" data-subsec-met>
+          <h3>Avaliação por ciclos (lógica de leitura técnica)</h3>
+          <ul class="bullets">
+            <li><strong>Linha de base (marco zero):</strong> estabelece a condição inicial para séries temporais comparativas.</li>
+            <li><strong>Ciclos de implantação/consolidação:</strong> priorizam evidências de infraestrutura, manejo e operacionalização dos módulos.</li>
+            <li><strong>Ciclos de integração plena:</strong> efeitos estruturais esperados após sucessivos ciclos produtivos (solo–planta–animal–ambiente).</li>
+          </ul>
+        </div>
+
+        <div class="subsec" id="met-indicadores" data-subsec-met>
+          <h3>Indicadores monitorados (estrutura mínima)</h3>
+          <div class="grid" aria-label="Indicadores">
+            <div class="card">
+              <h3>Solo</h3>
+              <p class="muted">Química e fertilidade (linha de base + séries temporais).</p>
+              <div class="row">
+                <span class="badge info">pH / Al / V%</span>
+                <span class="badge info">P / K / Ca / Mg</span>
+                <span class="badge info">CTC / MO</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Planta</h3>
+              <p class="muted">Produção e dinâmica de biomassa por ciclo e módulo.</p>
+              <div class="row">
+                <span class="badge info">massa seca</span>
+                <span class="badge info">composição botânica</span>
+                <span class="badge info">cobertura do solo</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Animal</h3>
+              <p class="muted">Desempenho e manejo (quando integrado ao módulo).</p>
+              <div class="row">
+                <span class="badge info">ganho/produção</span>
+                <span class="badge info">lotação / pastejo</span>
+                <span class="badge info">ciclagem de nutrientes</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Ambiente</h3>
+              <p class="muted">Efeitos do componente arbóreo e microclima (médio/longo prazo).</p>
+              <div class="row">
+                <span class="badge info">sombreamento</span>
+                <span class="badge info">conforto térmico</span>
+                <span class="badge info">dinâmica do sistema</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsec" id="met-governanca" data-subsec-met>
+          <h3>Governança técnica e rastreabilidade</h3>
+          <ul class="bullets">
+            <li>Organização por seções técnicas e documentação de referência em “Evidências”.</li>
+            <li>Atualizações realizadas por ciclos, com registro no “Histórico de Atualizações”.</li>
+            <li>Estrutura voltada à transparência institucional e acompanhamento público das entregas.</li>
+          </ul>
+        </div>
+      </section>
+
       <!-- PAINEL DE EVIDÊNCIAS -->
       <section id="evidencias">
         <div class="head">
           <h2>Painel de Evidências e Documentos Oficiais</h2>
-          <span class="tag">Transparência e rastreabilidade</span>
+          <span class="tag">Transparência e metadados</span>
         </div>
 
         <p class="muted">
-          Acesso público aos documentos estruturantes do projeto, organizados para fins de transparência, governança e rastreabilidade das entregas pactuadas.
+          Documentos estruturantes do projeto organizados com metadados mínimos para fins de governança, auditoria e rastreabilidade.
         </p>
 
-        <div class="evidence">
-          <p class="ev-title">Documentos-base (clique para acessar)</p>
+        <div class="grid" aria-label="Documentos oficiais">
+          <div class="card">
+            <h3>Projeto (documento base)</h3>
+            <p class="muted">Apresentação e caracterização técnica do projeto (referência).</p>
 
-          <div class="grid" aria-label="Documentos oficiais">
-            <div class="card">
-              <h3>Projeto <span class="ev-type">Documento</span></h3>
-              <p class="muted">Apresentação e caracterização técnica do projeto (versão de referência).</p>
-              <a href="https://drive.google.com/file/d/1JO60y3KsEInxZ08f-yOgDGVgY-UR5Qp2/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            <div class="meta" aria-label="Metadados do documento Projeto">
+              <div class="kv"><span class="k">Tipo:</span><span class="v">Documento</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">Vigente</span></div>
+              <div class="kv"><span class="k">Versão:</span><span class="v">Referência pública</span></div>
+              <div class="kv"><span class="k">Rastreio:</span><span class="v">Google Drive</span></div>
+              <div class="kv"><span class="k">Atualização:</span><span class="v">Conforme arquivo</span></div>
+              <div class="kv"><span class="k">Responsável:</span><span class="v">Coordenação técnica</span></div>
             </div>
 
-            <div class="card">
-              <h3>Convênio <span class="ev-type">Instrumento</span></h3>
-              <p class="muted">Instrumento formal de parceria e execução, com condições e responsabilidades pactuadas.</p>
-              <a href="https://drive.google.com/file/d/1jLS3lbZwJOzIwWjskou1ELTzwqEQhkvo/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            <a href="https://drive.google.com/file/d/1JO60y3KsEInxZ08f-yOgDGVgY-UR5Qp2/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+          </div>
+
+          <div class="card">
+            <h3>Convênio (instrumento)</h3>
+            <p class="muted">Instrumento formal de parceria e execução.</p>
+
+            <div class="meta" aria-label="Metadados do documento Convênio">
+              <div class="kv"><span class="k">Tipo:</span><span class="v">Instrumento</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">Vigente</span></div>
+              <div class="kv"><span class="k">Versão:</span><span class="v">Referência pública</span></div>
+              <div class="kv"><span class="k">Rastreio:</span><span class="v">Google Drive</span></div>
+              <div class="kv"><span class="k">Atualização:</span><span class="v">Conforme arquivo</span></div>
+              <div class="kv"><span class="k">Responsável:</span><span class="v">Instituições signatárias</span></div>
             </div>
 
-            <div class="card">
-              <h3>Plano de Trabalho <span class="ev-type">Plano</span></h3>
-              <p class="muted">Metas, cronograma e estrutura de execução vinculada ao instrumento de parceria.</p>
-              <a href="https://drive.google.com/file/d/14968GIO5tWa2RH9lj3qFsZoNV2jwbPYV/view?usp=drive_link" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            <a href="https://drive.google.com/file/d/1jLS3lbZwJOzIwWjskou1ELTzwqEQhkvo/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+          </div>
+
+          <div class="card">
+            <h3>Plano de Trabalho</h3>
+            <p class="muted">Metas, cronograma e estrutura de execução vinculada ao convênio.</p>
+
+            <div class="meta" aria-label="Metadados do documento Plano de Trabalho">
+              <div class="kv"><span class="k">Tipo:</span><span class="v">Plano</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">Vigente</span></div>
+              <div class="kv"><span class="k">Versão:</span><span class="v">Referência pública</span></div>
+              <div class="kv"><span class="k">Rastreio:</span><span class="v">Google Drive</span></div>
+              <div class="kv"><span class="k">Atualização:</span><span class="v">Conforme arquivo</span></div>
+              <div class="kv"><span class="k">Responsável:</span><span class="v">Coordenação/Instituições</span></div>
             </div>
 
-            <div class="card">
-              <h3>Súmula DOE/RS <span class="ev-type">Publicação</span></h3>
-              <p class="muted">Registro público no Diário Oficial do Estado do Rio Grande do Sul.</p>
-              <a href="https://drive.google.com/file/d/1tK2Pxku2EACZW0I35SSRJCZlG5OeKmtt/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
+            <a href="https://drive.google.com/file/d/14968GIO5tWa2RH9lj3qFsZoNV2jwbPYV/view?usp=drive_link" target="_blank" rel="noopener">Abrir no Google Drive</a>
+          </div>
+
+          <div class="card">
+            <h3>Súmula DOE/RS</h3>
+            <p class="muted">Registro público no Diário Oficial do Estado do Rio Grande do Sul.</p>
+
+            <div class="meta" aria-label="Metadados do documento Súmula DOE/RS">
+              <div class="kv"><span class="k">Tipo:</span><span class="v">Publicação oficial</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">Vigente</span></div>
+              <div class="kv"><span class="k">Versão:</span><span class="v">Referência pública</span></div>
+              <div class="kv"><span class="k">Rastreio:</span><span class="v">Google Drive</span></div>
+              <div class="kv"><span class="k">Atualização:</span><span class="v">Conforme arquivo</span></div>
+              <div class="kv"><span class="k">Responsável:</span><span class="v">DOE/RS</span></div>
             </div>
+
+            <a href="https://drive.google.com/file/d/1tK2Pxku2EACZW0I35SSRJCZlG5OeKmtt/view?usp=sharing" target="_blank" rel="noopener">Abrir no Google Drive</a>
           </div>
         </div>
       </section>
@@ -965,7 +1245,7 @@
           <h3>Academia (ensino e pesquisa)</h3>
           <ul class="bullets">
             <li>Desenvolvimento de pesquisa aplicada, protocolos e indicadores (solo, planta, animal e ambiente).</li>
-            <li>Participação em projetos, estágios, TCCs, dissertações e produção técnico-científica vinculada.</li>
+            <li>Participação em projetos, estágios, TCCs, dissertações e produtos técnico-científicos vinculados.</li>
             <li>Intercâmbio técnico e uso da unidade como ambiente permanente de experimentação e formação.</li>
           </ul>
         </div>
@@ -982,9 +1262,9 @@
         <div class="subsec" id="part-sociedade" data-subsec-part>
           <h3>Sociedade Civil</h3>
           <ul class="bullets">
-            <li>Participação em ações de extensão, educação e sensibilização sobre sustentabilidade e inovação no campo.</li>
+            <li>Participação em ações de extensão e educação sobre sustentabilidade e inovação no campo.</li>
             <li>Interação em eventos, visitas técnicas e iniciativas voltadas às pequenas propriedades rurais.</li>
-            <li>Fortalecimento da transparência e acompanhamento social via divulgação pública de evidências.</li>
+            <li>Fortalecimento da transparência via divulgação pública de evidências.</li>
           </ul>
         </div>
       </section>
@@ -1040,6 +1320,33 @@
         </a>
       </section>
 
+      <!-- CHANGELOG -->
+      <section id="atualizacoes">
+        <div class="head">
+          <h2>Histórico de atualizações (changelog)</h2>
+          <span class="tag">Rastreabilidade</span>
+        </div>
+
+        <p class="muted">
+          Registro sintético das alterações relevantes da plataforma para fins de governança técnica, transparência e auditoria.
+        </p>
+
+        <div class="changelog" aria-label="Changelog">
+          <div class="chgRow">
+            <div class="chgTop">
+              <span class="chgDate">25/02/2026</span>
+              <span class="chgVer">v1.0.0</span>
+            </div>
+            <ul>
+              <li>Reestruturação da home com carrossel (fotos inteiras) e apresentação técnico-institucional.</li>
+              <li>Inclusão de Metodologia/Protocolos, Evidências com metadados e sumários com âncoras interativas.</li>
+              <li>Layout mobile-friendly (menu hambúrguer, grids responsivos, tipografia adaptada).</li>
+              <li>Otimização perceptível: preload da 1ª imagem do carrossel + lazy nas demais.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <!-- PARCEIROS -->
       <section id="parceiros">
         <div class="head">
@@ -1054,19 +1361,19 @@
 
         <div class="partners" aria-label="Logos dos parceiros">
           <div class="partner">
-            <img src="assets/IFFar.png" alt="Instituto Federal Farroupilha (IFFar)" />
+            <img src="assets/IFFar.png" alt="Instituto Federal Farroupilha (IFFar)" loading="lazy" decoding="async" />
             <div class="name">Instituto Federal Farroupilha (IFFar)</div>
             <div class="desc">Instituição executora e base técnico-científica</div>
           </div>
 
           <div class="partner">
-            <img src="assets/sict.png" alt="Secretaria de Inovação, Ciência e Tecnologia (SICT/RS)" />
+            <img src="assets/sict.png" alt="Secretaria de Inovação, Ciência e Tecnologia (SICT/RS)" loading="lazy" decoding="async" />
             <div class="name">SICT/RS</div>
             <div class="desc">Parceira institucional no apoio e fomento</div>
           </div>
 
           <div class="partner">
-            <img src="assets/cotrifred.png" alt="COTRIFRED" />
+            <img src="assets/cotrifred.png" alt="COTRIFRED" loading="lazy" decoding="async" />
             <div class="name">COTRIFRED</div>
             <div class="desc">Parceira estratégica com interface regional</div>
           </div>
@@ -1094,7 +1401,7 @@
           <div class="card">
             <h3>Unidade experimental</h3>
             <p class="muted">
-              BR 386, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
+              BR 368, km 40, Linha 7 de Setembro, Frederico Westphalen/RS, Brasil. CEP: 98400-000.
             </p>
           </div>
         </div>
@@ -1107,7 +1414,10 @@
     <div class="wrap">
       <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
         <div>© <span id="year"></span> BigPush Sustentabilidade</div>
-        <div><a href="#contato">Contato</a></div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#atualizacoes">Atualizações</a>
+          <a href="#contato">Contato</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -1127,11 +1437,33 @@
     window.addEventListener("scroll", toggleTop, { passive: true });
     toggleTop();
 
-    // Menu ativo (header)
-    const navLinks = Array.from(document.querySelectorAll("nav a"));
-    const navSections = navLinks
-      .map(a => document.querySelector(a.getAttribute("href")))
-      .filter(Boolean);
+    // Menu mobile (hambúrguer)
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+
+    function closeMobileNav(){
+      mobileNav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    }
+    function toggleMobileNav(){
+      const open = mobileNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    menuBtn.addEventListener("click", toggleMobileNav);
+
+    // Fecha menu ao clicar em um link
+    mobileNav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", closeMobileNav);
+    });
+
+    // Fecha menu ao rolar (mobile)
+    window.addEventListener("scroll", () => {
+      if (mobileNav.classList.contains("open")) closeMobileNav();
+    }, { passive: true });
+
+    // Menu ativo (desktop)
+    const navLinks = Array.from(document.querySelectorAll("#mainNav a"));
+    const navSections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 
     const navObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1161,7 +1493,6 @@
       b.addEventListener("click", () => goTo(i));
       dotsWrap.appendChild(b);
     });
-
     const dots = Array.from(document.querySelectorAll(".dotbtn"));
 
     function paint(){
@@ -1175,8 +1506,8 @@
     function next(){ goTo(idx + 1); }
     function prev(){ goTo(idx - 1); }
 
-    nextBtn.addEventListener("click", next);
-    prevBtn.addEventListener("click", prev);
+    nextBtn?.addEventListener("click", next);
+    prevBtn?.addEventListener("click", prev);
 
     // auto-play (pausa ao interagir)
     let timer = null;
@@ -1195,7 +1526,6 @@
     slider.addEventListener("mouseleave", start);
     slider.addEventListener("focusin", stop);
     slider.addEventListener("focusout", start);
-
     start();
 
     // TOC ativo (Resultados)
@@ -1224,6 +1554,20 @@
         });
       }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
       tocSecsP.forEach(s => tocObsP.observe(s));
+    }
+
+    // TOC ativo (Metodologia)
+    const tocLinksM = Array.from(document.querySelectorAll("[data-toc-met]"));
+    const tocSecsM  = Array.from(document.querySelectorAll("[data-subsec-met]"));
+    if (tocLinksM.length && tocSecsM.length){
+      const tocObsM = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = "#" + entry.target.id;
+          tocLinksM.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+        });
+      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+      tocSecsM.forEach(s => tocObsM.observe(s));
     }
   </script>
 </body>
