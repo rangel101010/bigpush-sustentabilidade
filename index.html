@@ -19,36 +19,48 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- HEADER PADRONIZADO -->
+  <!-- HEADER (limpo + dropdown “Mais”) -->
   <header class="topbar" aria-label="Cabeçalho">
     <div class="wrap inner">
       <div class="brandbar">
         <img src="assets/logo-bigpush.png" alt="Símbolo BigPush" />
         <div class="brand">
           <strong>BigPush Sustentabilidade</strong>
-          <span>Evidências e governança técnica em módulos SIPA</span>
+          <span>Evidências e governança técnica em módulos SIPA (iLP • iLF • iLPF • iPF)</span>
         </div>
       </div>
 
-      <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu">
+      <button class="menuBtn" id="menuBtn" type="button"
+              aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu">
         <span class="menuIcon" aria-hidden="true"><span></span><span></span><span></span></span>
         Menu
       </button>
 
+      <!-- NAV DESKTOP (curto + Mais) -->
       <nav id="mainNav" aria-label="Navegação principal">
         <a href="index.html" class="active">Início</a>
         <a href="pages/metodologia.html">Metodologia</a>
         <a href="pages/evidencias.html">Evidências</a>
-        <a href="pages/modulos.html">Módulos</a>
         <a href="pages/resultados.html">Resultados</a>
-        <a href="pages/participacao.html">Participação</a>
-        <a href="pages/divulgacao.html">Divulgação</a>
         <a href="pages/galeria.html">Galeria</a>
-        <a href="pages/parceiros.html">Parceiros</a>
         <a href="pages/contato.html">Contato</a>
+
+        <div class="dropdown" data-dropdown>
+          <button class="dropbtn" type="button" data-dropbtn aria-expanded="false" aria-haspopup="menu">
+            Mais <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <div class="dropmenu" data-dropmenu role="menu" aria-label="Mais opções">
+            <a role="menuitem" href="pages/modulos.html">Módulos</a>
+            <a role="menuitem" href="pages/participacao.html">Participação</a>
+            <a role="menuitem" href="pages/divulgacao.html">Divulgação</a>
+            <a role="menuitem" href="pages/parceiros.html">Parceiros</a>
+          </div>
+        </div>
       </nav>
     </div>
 
+    <!-- NAV MOBILE (lista completa) -->
     <div class="wrap mobileNav" id="mobileNav" aria-label="Menu mobile">
       <div class="gridLinks">
         <a href="index.html">Início</a>
@@ -66,7 +78,7 @@
   </header>
 
   <!-- HERO / HOME -->
-  <div class="hero">
+  <div class="hero" id="conteudo">
     <div class="wrap">
       <div class="panel">
 
@@ -108,30 +120,24 @@
         </div>
 
         <!-- TEXTO + CTAs -->
-        <div class="inner" id="conteudo">
+        <div class="inner">
           <div class="text">
             <h2>Apresentação técnico-institucional</h2>
 
             <p class="muted">
-              O projeto BigPush Sustentabilidade consiste na implantação de uma Unidade de Referência Científica e Tecnológica em
-              Sistemas Integrados de Produção Agropecuária (SIPA) na região Produção e Norte do Rio Grande do Sul, no
-              Instituto Federal Farroupilha – Campus Frederico Westphalen.
+              O BigPush Sustentabilidade estrutura uma Unidade de Referência Científica e Tecnológica em Sistemas Integrados de Produção Agropecuária (SIPA),
+              no Instituto Federal Farroupilha – Campus Frederico Westphalen, com foco em pesquisa aplicada, inovação e difusão tecnológica para a região.
             </p>
 
             <p class="muted">
-              Fomentado pelo Edital SICT nº 02/2022 – Programa INOVA RS, o projeto resulta da articulação entre instituições de ensino e pesquisa,
-              setor produtivo, poder público e sociedade civil, consolidando uma parceria estratégica para o desenvolvimento regional.
-            </p>
-
-            <p class="muted">
-              A iniciativa estrutura módulos demonstrativos e comparativos de integração lavoura, pecuária e floresta, com foco na geração de pesquisa,
-              inovação e difusão de tecnologias voltadas à intensificação sustentável, aumento da produtividade e mitigação de impactos ambientais.
+              Fomentado pelo Edital SICT nº 02/2022 – Programa INOVA RS, o projeto consolida cooperação entre academia, setor produtivo e governo,
+              fortalecendo o ecossistema regional de inovação e a intensificação sustentável.
             </p>
           </div>
 
           <div class="cta" aria-label="Ações principais">
             <a class="btn primary" href="pages/evidencias.html">Painel de Evidências</a>
-            <a class="btn" href="pages/metodologia.html">Metodologia e Protocolos</a>
+            <a class="btn" href="pages/metodologia.html">Metodologia</a>
             <a class="btn" href="pages/resultados.html">Resultados</a>
             <a class="btn" href="pages/contato.html">Contato</a>
           </div>
@@ -160,7 +166,7 @@
     </div>
   </div>
 
-  <!-- SEÇÃO “HOME LINKS” (organização) -->
+  <!-- NAVEGAÇÃO RÁPIDA -->
   <main aria-label="Conteúdo complementar">
     <div class="wrap">
       <section>
@@ -183,14 +189,14 @@
           </div>
 
           <div class="card">
-            <h3>Resultados</h3>
-            <p class="muted">Sínteses técnicas e relatórios por fase/ciclo.</p>
-            <a href="pages/resultados.html">Acessar →</a>
+            <h3>Módulos</h3>
+            <p class="muted">Arquitetura experimental e organização dos sistemas.</p>
+            <a href="pages/modulos.html">Acessar →</a>
           </div>
 
           <div class="card">
             <h3>Divulgação</h3>
-            <p class="muted">Registros públicos, notícias e mídia.</p>
+            <p class="muted">Notícias, entrevistas e registros públicos do projeto.</p>
             <a href="pages/divulgacao.html">Acessar →</a>
           </div>
         </div>
