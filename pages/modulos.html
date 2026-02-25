@@ -1,1 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <title>Módulos SIPA | BigPush Sustentabilidade</title>
+  <meta name="description" content="Arquitetura experimental e organização dos módulos SIPA (ILP, ILF, ILPF, IPF) do projeto BigPush Sustentabilidade." />
+  <meta name="theme-color" content="#2f4f3a" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <script defer src="../js/app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- HEADER PADRONIZADO -->
+  <header class="topbar" aria-label="Cabeçalho">
+    <div class="wrap inner">
+      <div class="brandbar">
+        <img src="../assets/logo-bigpush.png" alt="Símbolo BigPush" />
+        <div class="brand">
+          <strong>BigPush Sustentabilidade</strong>
+          <span>Evidências e governança técnica em módulos SIPA</span>
+        </div>
+      </div>
+
+      <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menu">
+        <span class="menuIcon" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        Menu
+      </button>
+
+      <nav id="mainNav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="./metodologia.html">Metodologia</a>
+        <a href="./evidencias.html">Evidências</a>
+        <a href="./modulos.html" class="active">Módulos</a>
+        <a href="./resultados.html">Resultados</a>
+        <a href="./participacao.html">Participação</a>
+        <a href="./divulgacao.html">Divulgação</a>
+        <a href="./galeria.html">Galeria</a>
+        <a href="./parceiros.html">Parceiros</a>
+        <a href="./contato.html">Contato</a>
+      </nav>
+    </div>
+
+    <div class="wrap mobileNav" id="mobileNav" aria-label="Menu mobile">
+      <div class="gridLinks">
+        <a href="../index.html">Início</a>
+        <a href="./metodologia.html">Metodologia</a>
+        <a href="./evidencias.html">Evidências</a>
+        <a href="./modulos.html">Módulos</a>
+        <a href="./resultados.html">Resultados</a>
+        <a href="./participacao.html">Participação</a>
+        <a href="./divulgacao.html">Divulgação</a>
+        <a href="./galeria.html">Galeria</a>
+        <a href="./parceiros.html">Parceiros</a>
+        <a href="./contato.html">Contato</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" aria-label="Conteúdo principal">
+    <div class="wrap">
+
+      <section>
+        <div class="head">
+          <h2>Módulos SIPA — Arquitetura Experimental</h2>
+          <span class="tag">Organização dos Sistemas</span>
+        </div>
+
+        <p class="muted">
+          A Unidade de Referência Científica e Tecnológica em SIPA está estruturada em módulos comparativos de Sistemas Integrados de Produção Agropecuária.
+          Os módulos encontram-se em diferentes estágios de implantação e consolidação, orientando a leitura técnica por ciclos.
+        </p>
+
+        <div class="grid" aria-label="Módulos SIPA">
+
+          <div class="card">
+            <h3>ILP — Integração Lavoura–Pecuária</h3>
+            <p class="muted">
+              Ênfase em ciclagem de nutrientes, cobertura do solo, produção de forragem e eficiência de uso de recursos por ciclo.
+            </p>
+
+            <div class="row">
+              <span class="badge ok">Foco: solo–planta–animal</span>
+              <span class="badge info">Leitura: por ciclos produtivos</span>
+              <span class="badge warn">Integração plena: fases futuras</span>
+            </div>
+
+            <div class="meta" aria-label="Metadados do módulo ILP">
+              <div class="kv"><span class="k">Componente:</span><span class="v">Lavoura + Pecuária</span></div>
+              <div class="kv"><span class="k">Indicadores:</span><span class="v">biomassa, lotação, solo</span></div>
+              <div class="kv"><span class="k">Horizonte:</span><span class="v">médio prazo</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">implantação em andamento</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>ILF — Integração Lavoura–Floresta</h3>
+            <p class="muted">
+              Ênfase no efeito do componente arbóreo sobre microclima, solo, produtividade e estabilidade do sistema (médio/longo prazo).
+            </p>
+
+            <div class="row">
+              <span class="badge ok">Foco: ambiente e solo</span>
+              <span class="badge warn">Efeito arbóreo: longo prazo</span>
+              <span class="badge info">Linha de base: referência inicial</span>
+            </div>
+
+            <div class="meta" aria-label="Metadados do módulo ILF">
+              <div class="kv"><span class="k">Componente:</span><span class="v">Lavoura + Floresta</span></div>
+              <div class="kv"><span class="k">Indicadores:</span><span class="v">sombreamento, solo, biomassa</span></div>
+              <div class="kv"><span class="k">Horizonte:</span><span class="v">longo prazo</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">consolidação inicial</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>ILPF — Integração Lavoura–Pecuária–Floresta</h3>
+            <p class="muted">
+              Ênfase em integração sistêmica completa, com avaliação do componente arbóreo estabelecido e impactos combinados sobre solo, planta e animal.
+            </p>
+
+            <div class="row">
+              <span class="badge ok">Foco: integração completa</span>
+              <span class="badge warn">Latência: efeito arbóreo</span>
+              <span class="badge info">Leitura: por ciclos sucessivos</span>
+            </div>
+
+            <div class="meta" aria-label="Metadados do módulo ILPF">
+              <div class="kv"><span class="k">Componente:</span><span class="v">Lavoura + Pecuária + Floresta</span></div>
+              <div class="kv"><span class="k">Indicadores:</span><span class="v">solo, biomassa, desempenho</span></div>
+              <div class="kv"><span class="k">Horizonte:</span><span class="v">médio/longo prazo</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">fase inicial</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>IPF — Integração Pecuária–Floresta</h3>
+            <p class="muted">
+              Ênfase em conforto térmico, dinâmica de pastejo, ciclagem de nutrientes e desempenho animal sob ambiente arborizado.
+            </p>
+
+            <div class="row">
+              <span class="badge ok">Foco: animal e ambiente</span>
+              <span class="badge info">Conforto térmico: indicador-chave</span>
+              <span class="badge warn">Efeito arbóreo: médio/longo prazo</span>
+            </div>
+
+            <div class="meta" aria-label="Metadados do módulo IPF">
+              <div class="kv"><span class="k">Componente:</span><span class="v">Pecuária + Floresta</span></div>
+              <div class="kv"><span class="k">Indicadores:</span><span class="v">pastejo, desempenho, microclima</span></div>
+              <div class="kv"><span class="k">Horizonte:</span><span class="v">médio/longo prazo</span></div>
+              <div class="kv"><span class="k">Status:</span><span class="v">implantação em andamento</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <div class="head">
+          <h2>Leitura por ciclos e interpretação institucional</h2>
+          <span class="tag">Transparência Técnica</span>
+        </div>
+
+        <ul class="bullets">
+          <li><strong>Fase atual:</strong> implantação e consolidação inicial — os registros priorizam linha de base e evidências de operacionalização.</li>
+          <li><strong>Médio prazo:</strong> efeitos de integração passam a ser mensurados com maior robustez após sucessivos ciclos produtivos.</li>
+          <li><strong>Componente arbóreo:</strong> efeitos estruturais demandam tempo (estabelecimento, sombreamento, microclima), aumentando confiabilidade com o avanço do projeto.</li>
+        </ul>
+      </section>
+
+      <footer aria-label="Rodapé" style="margin-top:18px;">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div class="muted">© <span id="year"></span> BigPush Sustentabilidade</div>
+          <div style="display:flex; gap:14px;">
+            <a href="../index.html" style="color:var(--moss); font-weight:900; text-decoration:none;">Início</a>
+            <a href="./contato.html" style="color:var(--moss); font-weight:900; text-decoration:none;">Contato</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    const y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
